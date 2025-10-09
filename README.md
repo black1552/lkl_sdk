@@ -19,7 +19,7 @@ lklsdk/
 
 ```bash
 # 将SDK引入到您的项目中
-go get -u github.com/black1552/lkl_sdk/lklsdk
+go get -u github.com/black1552/lkl_sdk
 ```
 
 ## 快速开始
@@ -33,22 +33,21 @@ import (
 	"github.com/gogf/gf/v2/os/gctx"
 )
 
-// 创建配置
-config := &lklsdk.Config{
-	AppID:        "your_app_id",        // 拉卡拉分配的AppID
-	TermNo:       "your_term_no",       // 终端号
-	MerchantNo:   "your_merchant_no",   // 商户号
-	SettleMerNo:  "your_settle_mer_no", // 结算商户号
-	SettleTermNo: "your_settle_term_no", // 结算终端号
-	AccountType:  "WECHAT",              // 账户类型，如WECHAT、ALIPAY等
-	TransType:    "71",                  // 交易类型
-	Version:      "3.0",                 // API版本
-	NotifyURL:    "your_notify_url",     // 回调URL
-	SerialNo:     "your_mch_api_key",    // 商户API密钥
-}
+// 创建配置JSON字符串
+cfgJson := `{
+	"public_key": "your_public_key",        // 公钥字符串
+	"private_key": "your_private_key",      // 私钥字符串
+	"app_id": "your_app_id",                // lakala应用ID
+	"serial_no": "your_serial_no",          // 序列号
+	"sub_app_id": "your_sub_app_id",        // 子应用ID 微信AppId
+	"version": "3.0",                       // lakala版本号
+	"account_type": "WECHAT",               // 账户类型
+	"trans_type": "71",                     // 交易类型
+	"notify_url": "your_notify_url"         // 回调地址
+}`
 
 // 初始化SDK（使用泛型指定响应类型）
-sdk := lklsdk.NewSDK[model.ResponseType](gctx.New(), config)
+sdk := lklsdk.NewSDK[model.ResponseType](gctx.New(), cfgJson)
 ```
 
 ## 功能模块
@@ -57,7 +56,7 @@ sdk := lklsdk.NewSDK[model.ResponseType](gctx.New(), config)
 
 ```go
 // 初始化特定响应类型的SDK
-sdk := lklsdk.NewSDK[model.MergePreorderResponse](gctx.New(), config)
+sdk := lklsdk.NewSDK[model.MergePreorderResponse](gctx.New(), cfgJson)
 
 // 准备拆单信息
 outSplitInfo := []*model.OutSplitInfo{
@@ -110,7 +109,7 @@ if !mergePreorderResp.SuccessOrFail() {
 
 ```go
 // 初始化特定响应类型的SDK
-sdk := lklsdk.NewSDK[model.ApplyLedgerMerResponse](gctx.New(), config)
+sdk := lklsdk.NewSDK[model.ApplyLedgerMerResponse](gctx.New(), cfgJson)
 
 // 构建请求参数
 applyLedgerReq := &model.ApplyLedgerMerReqData{
@@ -143,7 +142,7 @@ if !expectResp.SuccessOrFail() {
 
 ```go
 // 初始化特定响应类型的SDK
-sdk := lklsdk.NewSDK[model.TradeQueryResponse](gctx.New(), config)
+sdk := lklsdk.NewSDK[model.TradeQueryResponse](gctx.New(), cfgJson)
 
 // 构建请求参数
 tradeQueryReq := &model.TradeQueryReqData{
@@ -168,7 +167,7 @@ if !tradeQueryResp.SuccessOrFail() {
 
 ```go
 // 初始化特定响应类型的SDK
-sdk := lklsdk.NewSDK[model.OrderSplitLedgerResponse](gctx.New(), config)
+sdk := lklsdk.NewSDK[model.OrderSplitLedgerResponse](gctx.New(), cfgJson)
 
 // 准备分账接收方数据
 var recvDatas []*model.OrderSplitLedgerRecvDatas
@@ -199,11 +198,44 @@ if !splitLedgerResp.SuccessOrFail() {
 }
 ```
 
-### 5. 账户余额查询
+### 5. 退款
 
 ```go
 // 初始化特定响应类型的SDK
-sdk := lklsdk.NewSDK[model.BalanceQueryResponse](gctx.New(), config)
+sdk := lklsdk.NewSDK[model.RefundResponse](gctx.New(), cfgJson)
+
+// 构建请求参数
+refundReq := &model.RefundReqData{
+	MerchantNo: "your_merchant_no",  // 商户号
+	TermNo:     "your_term_no",      // 终端号
+	OutTradeNo: "original_out_trade_no", // 原商户交易流水号
+	OutRefundNo: "your_refund_out_trade_no", // 退款商户流水号
+	RefundAmount: "100",  // 退款金额，单位为分
+	TotalAmount: "100",   // 原交易总金额，单位为分
+	RefundReason: "退款原因", // 退款原因
+	NotifyUrl: "https://your-notify-url.com", // 回调地址
+}
+
+// 调用接口
+refundResp, err := sdk.Refound(refundReq)
+if err != nil {
+	log.Printf("退款失败: %v\n", err)
+}
+
+// 使用SuccessOrFail方法判断请求是否成功
+if !refundResp.SuccessOrFail() {
+	log.Printf("退款失败: %s\n", refundResp.Msg)
+}
+
+// 处理成功响应
+// 可以从refundResp.RespData中获取退款结果数据
+```
+
+### 6. 账户余额查询
+
+```go
+// 初始化特定响应类型的SDK
+sdk := lklsdk.NewSDK[model.BalanceQueryResponse](gctx.New(), cfgJson)
 
 // 构建请求参数
 balanceQueryReq := &model.BalanceQueryReqData{

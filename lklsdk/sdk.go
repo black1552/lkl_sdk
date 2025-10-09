@@ -17,8 +17,8 @@ type SDK[T any] struct {
 }
 
 // NewSDK 创建拉卡拉SDK实例
-func NewSDK[T any](ctx context.Context, config *Config) *SDK[T] {
-	client := NewClient[T](ctx, config)
+func NewSDK[T any](ctx context.Context, cfgJson string) *SDK[T] {
+	client := NewClient[T](ctx, cfgJson)
 	return &SDK[T]{
 		Client:      client,
 		SplitLedger: NewSplitLedgerService(client),

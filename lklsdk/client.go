@@ -16,22 +16,20 @@ import (
 
 	"github.com/black1552/base-common/utils"
 	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/gogf/gf/v2/util/gconv"
 )
 
 // Config 拉卡拉SDK配置
 type Config struct {
-	AppID        string `json:"app_id"`
-	TermNo       string `json:"term_no"`
-	MerchantNo   string `json:"merchant_no"`
-	SettleMerNo  string `json:"settle_merchant_no"`
-	SettleTermNo string `json:"settle_term_no"`
-	AccountType  string `json:"account_type"`
-	TransType    string `json:"trans_type"`
-	Version      string `json:"version"`
-	NotifyURL    string `json:"notify_url"`
-	PublicKey    string `json:"public_key"`
-	PrivateKey   string `json:"private_key"`
-	SerialNo     string `json:"serial_no"`
+	PublicKey   string `json:"public_key" dc:"公钥字符串"`
+	PrivateKey  string `json:"private_key" dc:"私钥字符串"`
+	AppId       string `json:"app_id" dc:"lakala应用ID"`
+	SerialNo    string `json:"serial_no" dc:"序列号"`
+	SubAppId    string `json:"sub_app_id" dc:"子应用ID 微信AppId"`
+	Version     string `json:"version" dc:"lakala版本号"`
+	AccountType string `json:"account_type" dc:"账户类型"`
+	TransType   string `json:"trans_type" dc:"交易类型"`
+	NotifyUrl   string `json:"notify_url" dc:"回调地址"`
 }
 
 // Client 拉卡拉SDK客户端
@@ -42,7 +40,12 @@ type Client[T any] struct {
 }
 
 // NewClient 创建拉卡拉SDK客户端
-func NewClient[T any](ctx context.Context, config *Config) *Client[T] {
+func NewClient[T any](ctx context.Context, cfgJson string) *Client[T] {
+	var config *Config
+	err := gconv.Struct(cfgJson, &config)
+	if err != nil {
+		return nil
+	}
 	return &Client[T]{
 		config: config,
 		ctx:    ctx,
@@ -65,7 +68,7 @@ func (c *Client[T]) generateSign(request []byte) (string, error) {
 	timestamp := fmt.Sprintf("%d", time.Now().Unix())
 
 	// 构建待签名报文
-	signData := fmt.Sprintf("%s\n%s\n%s\n%s\n%s\n", c.config.AppID, c.config.SerialNo, timestamp, nonceStr, string(request))
+	signData := fmt.Sprintf("%s\n%s\n%s\n%s\n%s\n", c.config.AppId, c.config.SerialNo, timestamp, nonceStr, string(request))
 
 	// 计算签名
 	hashed := sha256.Sum256([]byte(signData))
@@ -82,7 +85,7 @@ func (c *Client[T]) generateSign(request []byte) (string, error) {
 
 	// 构建Authorization头
 	authorization := fmt.Sprintf("LKLAPI-SHA256withRSA appid=\"%s\",serial_no=\"%s\",timestamp=\"%s\",nonce_str=\"%s\",signature=\"%s\"",
-		c.config.AppID, c.config.SerialNo, timestamp, nonceStr, signatureBase64)
+		c.config.AppId, c.config.SerialNo, timestamp, nonceStr, signatureBase64)
 	return authorization, nil
 }
 
