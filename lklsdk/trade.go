@@ -28,7 +28,7 @@ func (t *TradeService[T]) TradeQuery(req *model.TradeQueryReqData) (*T, error) {
 	baseReq := model.TradeQuery{
 		ReqTime:    time.Now().Format("20060102150405"),
 		Version:    "3.0",
-		OutOrgCode: t.client.config.AppID,
+		OutOrgCode: t.client.config.AppId,
 		ReqData:    req,
 	}
 
