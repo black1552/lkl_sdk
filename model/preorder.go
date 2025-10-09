@@ -35,22 +35,21 @@ func NewPreorder(param *PreorderReqData) *Preorder {
 
 // PreorderResponse 预下单响应结构体
 type PreorderResponse struct {
-	Code     string  `json:"code"`      // 响应码，BBS00000表示成功
-	Msg      string  `json:"msg"`       // 响应信息，对响应码的文字描述
-	ReqData  ReqData `json:"resp_data"` // 响应业务数据
-	RespTime string  `json:"resp_time"` // 响应时间
+	Code     string   `json:"code"`      // 响应码，BBS00000表示成功
+	Msg      string   `json:"msg"`       // 响应信息，对响应码的文字描述
+	ReqData  *ReqData `json:"resp_data"` // 响应业务数据
+	RespTime string   `json:"resp_time"` // 响应时间
 }
 
 // ReqData 响应业务数据
 type ReqData struct {
-	MerchantNo       string             `json:"merchant_no"`        // 商户号
-	OutTradeNo       string             `json:"out_trade_no"`       // 外部订单号（商户订单号）
-	TradeNo          string             `json:"trade_no"`           // 交易号，拉卡拉生成的订单号
-	LogNo            string             `json:"log_no"`             // 拉卡拉对账单流水号
-	SettleMerchantNo string             `json:"settle_merchant_no"` // 结算商户号
-	SettleTermNo     string             `json:"settle_term_no"`     // 结算终端号
-	AccRespFields    WxPreorderResponse `json:"acc_resp_fields"`    // 支付通道返回的具体信息
-
+	MerchantNo       string              `json:"merchant_no"`        // 商户号
+	OutTradeNo       string              `json:"out_trade_no"`       // 外部订单号（商户订单号）
+	TradeNo          string              `json:"trade_no"`           // 交易号，拉卡拉生成的订单号
+	LogNo            string              `json:"log_no"`             // 拉卡拉对账单流水号
+	SettleMerchantNo string              `json:"settle_merchant_no"` // 结算商户号
+	SettleTermNo     string              `json:"settle_term_no"`     // 结算终端号
+	AccRespFields    *WxPreorderResponse `json:"acc_resp_fields"`    // 支付通道返回的具体信息
 }
 
 // WxPreorderResponse 支付通道返回的具体信息

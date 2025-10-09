@@ -55,14 +55,7 @@ type ApplyLedgerReceiverReqData struct {
 	// 收款账户清算行行号，必传，长度32，取值说明：参照FBI.N信息查询，仅支持对私结算账户
 	AcctClearBankCode string `json:"acctClearBankCode"`
 	// 接收方附件资料，可选，集合
-	AttachList []struct {
-		// 附件名称，可选，长度32
-		AttachName string `json:"attachName"`
-		// 附件路径，可选，长度32，取值说明：（调用进件附件上传接口获取到附件路径）
-		AttachStorePath string `json:"attachStorePath"`
-		// 附件类型编码，可选，长度32
-		AttachType string `json:"attachType"`
-	} `json:"attachList"`
+	AttachList []*ApplyBindAttachment `json:"attachList"`
 	// 提款类型，可选，长度32，取值说明：01：主动提款，03：交易自动结算，不填默认01
 	SettleType string `json:"settleType"`
 }

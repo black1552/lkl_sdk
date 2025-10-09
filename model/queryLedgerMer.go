@@ -66,7 +66,7 @@ type QueryLedgerMerRespData struct {
 	// 分账规则来源，取值说明：MER：商户分账规则，PLATFORM：平台分账规则
 	SplitRuleSource string `json:"split_rule_source"`
 	// 已绑定接收方列表
-	BindRelations []BindRelation `json:"bind_relations"`
+	BindRelations []*BindRelation `json:"bind_relations"`
 }
 
 // BindRelation 已绑定接收方信息结构体
