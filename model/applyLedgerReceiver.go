@@ -37,7 +37,7 @@ type ApplyLedgerReceiverReqData struct {
 	// 法人姓名，可选，长度32，取值说明：收款账户类型为对公，必须上送
 	LegalPersonName string `json:"legalPersonName"`
 	// 法人证件类型，可选，长度32，取值说明：17身份证，18护照，19港澳居民来往内地通行证，20台湾居民来往内地通行证，收款账户类型为对公，必须上送，身份证外类型先咨询后再使用
-	LegalPersonCertificateType string `json:"legalPersonCertificateType"`
+	LegalPersonCertificateType consts.AcctCertificateType `json:"legalPersonCertificateType"`
 	// 法人证件号，可选，长度32，取值说明：收款账户类型为对公，必须上送
 	LegalPersonCertificateNo string `json:"legalPersonCertificateNo"`
 	// 收款账户卡号，必传，长度32
@@ -47,7 +47,7 @@ type ApplyLedgerReceiverReqData struct {
 	// 收款账户类型代码，必传，长度32，取值说明：57：对公，58：对私
 	AcctTypeCode consts.AcctTypeCode `json:"acctTypeCode"`
 	// 收款账户证件类型，必传，长度32，取值说明：17身份证，18护照，19港澳居民来往内地通行证，20台湾居民来往内地通行证，身份证外类型先咨询后再使用
-	AcctCertificateType string `json:"acctCertificateType"`
+	AcctCertificateType consts.AcctCertificateType `json:"acctCertificateType"`
 	// 收款账户证件号，必传，长度32
 	AcctCertificateNo string `json:"acctCertificateNo"`
 	// 收款账户开户行号，必传，长度32，取值说明：参照FBI.N信息查询，仅支持对私结算账户

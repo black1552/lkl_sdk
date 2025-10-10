@@ -14,6 +14,7 @@ type SDK[T any] struct {
 	Account     *AccountService[T]
 	UploadFile  *UploadFileService[T]
 	MergePre    *MergePreService[T]
+	Merchant    *MerService[T]
 }
 
 // NewSDK 创建拉卡拉SDK实例
@@ -26,10 +27,31 @@ func NewSDK[T any](ctx context.Context, cfgJson string) *SDK[T] {
 		Account:     NewAccountService(client),
 		UploadFile:  NewUploadFileService(client),
 		MergePre:    NewMergePreService(client),
+		Merchant:    NewMerService(client),
 	}
 }
 
 // 以下为便捷方法，直接通过SDK调用各服务的主要功能
+
+// ReconsiderSubmit 商户进件复议提交
+func (s *SDK[T]) ReconsiderSubmit(req *model.ReConfSubmitRequestData) (*T, error) {
+	return s.Merchant.ReconsiderSubmit(req)
+}
+
+// QueryMerchant 商户进件信息查询
+func (s *SDK[T]) QueryMerchant(req *model.QueryMerRequestData) (*T, error) {
+	return s.Merchant.QueryMer(req)
+}
+
+// MerValidate 商户进件信息校验
+func (s *SDK[T]) MerValidate(req *model.MerValidateRequestData) (*T, error) {
+	return s.Merchant.MerValidate(req)
+}
+
+// AddMer 商户进件
+func (s *SDK[T]) AddMer(req *model.MerchantApplyReqData) (*T, error) {
+	return s.Merchant.AddMer(req)
+}
 
 // MergePreOrder 主扫合单交易
 func (s *SDK[T]) MergePreOrder(req *model.MergePreorderReqData) (*T, error) {

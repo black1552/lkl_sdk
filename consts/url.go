@@ -23,6 +23,9 @@ const (
 	LKL_ACCOUNT_BALANCE_QUERY_URL = "/v2/laep/industry/ewalletBalanceQuery"
 	// LKL_ACCOUNT_WITHDRAW_URL 拉卡拉账户提现
 	LKL_ACCOUNT_WITHDRAW_URL = "/v2/laep/industry/ewalletWithdrawD1"
+)
+
+const (
 	// LKL_TRADE_QUERY_URL 拉卡拉交易查询
 	LKL_TRADE_QUERY_URL = "/v3/labs/query/tradequery"
 	// LKL_PRE_ORDER_URL 拉卡拉聚合预下单
@@ -31,4 +34,15 @@ const (
 	LKL_MERGE_ORDER_URL = "/v3/labs/trans/merge/preorder"
 	// LKL_REFOUND_URL 拉卡拉退款
 	LKL_REFOUND_URL = "/v3/rfd/refund_front/refund"
+)
+
+const (
+	// LKL_ADD_MER 拉卡拉商户进件
+	LKL_ADD_MER = "/v2/mms/openApi/addMer"
+	// LKL_QUERY_MER 拉卡拉商户查询
+	LKL_QUERY_MER = "/v2/mms/openApi/queryContract"
+	// LKL_MER_VALIDATE 拉卡拉商户进件效验
+	LKL_MER_VALIDATE = "/v2/mms/openApi/verifyContractInfo"
+	// LKL_RECONF_SUBMIT 拉卡拉商户进件复议提交
+	LKL_RECONF_SUBMIT = "/v2/mms/openApi/reconsiderSubmit"
 )
