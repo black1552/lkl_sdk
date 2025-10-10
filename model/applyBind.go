@@ -1,5 +1,7 @@
 package model
 
+import "github.com/black1552/lkl_sdk/consts"
+
 // ApplyBindRequest 分账关系绑定请求结构体
 // 用于发起分账接收方与商户的关系绑定申请
 // 拉卡拉SDK接口文档：分账关系绑定接口
@@ -28,9 +30,9 @@ type ApplyBindReqData struct {
 }
 
 type ApplyBindAttachment struct {
-	AttachType      string `json:"attachType"`      // 附件类型编码，必传，长度32
-	AttachName      string `json:"attachName"`      // 附件名称，必传，长度32
-	AttachStorePath string `json:"attachStorePath"` // 附件路径，必传，长度128，通过调用附件上传接口获取
+	AttachType      consts.AttType `json:"attachType"`      // 附件类型编码，必传，长度32
+	AttachName      string         `json:"attachName"`      // 附件名称，必传，长度32
+	AttachStorePath string         `json:"attachStorePath"` // 附件路径，必传，长度128，通过调用附件上传接口获取
 }
 
 // ApplyBindResponse 分账关系绑定响应结构体

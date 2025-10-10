@@ -1,5 +1,7 @@
 package model
 
+import "github.com/black1552/lkl_sdk/consts"
+
 // WithdrawRequest 提现请求结构体
 // 用于向拉卡拉接口发送提现请求
 // 包含请求头信息和业务数据
@@ -29,7 +31,7 @@ type WithdrawReqData struct {
 	// 账号（若该参数上送，则payType将无效），非必传，最大长度32
 	PayNo string `json:"pay_no"`
 	// 账号类型（01：收款账户，04：分账接收方账户）未上送则默认01，必传，最大长度32，分账接收方提现时需填04
-	PayType string `json:"pay_type"`
+	PayType consts.PayType `json:"pay_type"`
 	// 备注信息，非必传，最大长度64
 	Remark string `json:"remark"`
 	// 摘要，非必传，最大长度64

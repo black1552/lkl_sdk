@@ -1,5 +1,7 @@
 package model
 
+import "github.com/black1552/lkl_sdk/consts"
+
 // ApplyLedgerReceiverRequest 分账接收方创建请求结构体
 // 用于向拉卡拉接口发送分账接收方创建请求
 // 包含请求头信息和业务数据
@@ -43,7 +45,7 @@ type ApplyLedgerReceiverReqData struct {
 	// 收款账户名称，必传，长度32
 	AcctName string `json:"acctName"`
 	// 收款账户类型代码，必传，长度32，取值说明：57：对公，58：对私
-	AcctTypeCode string `json:"acctTypeCode"`
+	AcctTypeCode consts.AcctTypeCode `json:"acctTypeCode"`
 	// 收款账户证件类型，必传，长度32，取值说明：17身份证，18护照，19港澳居民来往内地通行证，20台湾居民来往内地通行证，身份证外类型先咨询后再使用
 	AcctCertificateType string `json:"acctCertificateType"`
 	// 收款账户证件号，必传，长度32

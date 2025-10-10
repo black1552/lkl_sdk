@@ -1,6 +1,9 @@
 package model
 
-import "github.com/gogf/gf/v2/os/gtime"
+import (
+	"github.com/black1552/lkl_sdk/consts"
+	"github.com/gogf/gf/v2/os/gtime"
+)
 
 // Preorder 预下单请求结构体
 type Preorder struct {
@@ -11,13 +14,14 @@ type Preorder struct {
 
 // PreorderReqData 预下单请求业务数据
 type PreorderReqData struct {
-	MerchantNo   string `json:"merchant_no"`  // 商户号，拉卡拉分配的商户号，String(32)
-	TermNo       string `json:"term_no"`      // 终端号，拉卡拉分配的业务终端号，String(32)
-	OutTradeNo   string `json:"out_trade_no"` // 商户交易流水号，商户系统唯一，对应数据库表中外请求流水号，String(32)
-	AccountType  string `json:"account_type"` // 钱包类型，微信：WECHAT 支付宝：ALIPAY 银联：UQRCODEPAY 翼支付：BESTPAY 苏宁易付宝：SUNING 拉卡拉支付账户：LKLACC 网联小钱包：NUCSPAY 京东钱包：JD，String(32)
-	TransType    string `json:"trans_type"`   // 接入方式，41:NATIVE（ALIPAY, 云闪付支持, 京东白条分期）51:JSAPI（微信公众号支付, 支付宝服务窗、JS支付, 翼支付JS支付, 拉卡拉钱包支付, 京东白条分期）71:微信小程序支付61:APP支付（微信APP支付），String(2)
-	TotalAmount  string `json:"total_amount"` // 金额，单位分，整数型字符，String(12)
-	NotifyUrl    string `json:"notify_url"`   // 商户通知地址，商户通知地址，如果上传，且 pay_order_no 不存在情况下，则按此地址通知商户，String(128)
+	MerchantNo   string             `json:"merchant_no"`  // 商户号，拉卡拉分配的商户号，String(32)
+	TermNo       string             `json:"term_no"`      // 终端号，拉卡拉分配的业务终端号，String(32)
+	OutTradeNo   string             `json:"out_trade_no"` // 商户交易流水号，商户系统唯一，对应数据库表中外请求流水号，String(32)
+	AccountType  consts.AccountType `json:"account_type"` // 钱包类型，微信：WECHAT 支付宝：ALIPAY 银联：UQRCODEPAY 翼支付：BESTPAY 苏宁易付宝：SUNING 拉卡拉支付账户：LKLACC 网联小钱包：NUCSPAY 京东钱包：JD，String(32)
+	TransType    consts.TransType   `json:"trans_type"`   // 接入方式，41:NATIVE（ALIPAY, 云闪付支持, 京东白条分期）51:JSAPI（微信公众号支付, 支付宝服务窗、JS支付, 翼支付JS支付, 拉卡拉钱包支付, 京东白条分期）71:微信小程序支付61:APP支付（微信APP支付），String(2)
+	TotalAmount  string             `json:"total_amount"` // 金额，单位分，整数型字符，String(12)
+	NotifyUrl    string             `json:"notify_url"`   // 商户通知地址，商户通知地址，如果上传，且 pay_order_no 不存在情况下，则按此地址通知商户，String(128)
+	SettleType   consts.SettleType  `json:"settle_type"`  // “0”或者空，常规结算方式，如需接拉卡拉分账通需传“1”，商户未开通分账之前切记不用上送此参数。
 	LocationInfo struct {
 		RequestIp string `json:"request_ip"` // 请求方IP地址，存在必填，格式如36.45.36.95，String(64)
 		Location  string `json:"location"`   // 纬度,经度，商户终端的地理位置，银联二维码交易必填，整体格式：纬度,经度，+表示北纬、东经，-表示南纬、西经。经度格式：1位正负号+3位整数+1位小数点+5位小数；纬度格式：1位正负号+2位整数+1位小数点+6位小数；举例：+31.221345,+121.12345，String(32)

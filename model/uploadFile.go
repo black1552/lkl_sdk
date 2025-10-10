@@ -1,5 +1,7 @@
 package model
 
+import "github.com/black1552/lkl_sdk/consts"
+
 type UploadFileRequest struct {
 	ReqData   *UploadFileReqData `json:"reqData"`
 	Ver       string             `json:"ver"`
@@ -8,12 +10,12 @@ type UploadFileRequest struct {
 }
 
 type UploadFileReqData struct {
-	Version    string `json:"version"`
-	OrderNo    string `json:"orderNo"`
-	AttType    string `json:"attType"`
-	AttExtName string `json:"attExtName"`
-	AttContext string `json:"attContext"`
-	OrgCode    string `json:"orgCode"`
+	Version    string         `json:"version"`
+	OrderNo    string         `json:"orderNo"`
+	AttType    consts.AttType `json:"attType"`
+	AttExtName string         `json:"attExtName"`
+	AttContext string         `json:"attContext"`
+	OrgCode    string         `json:"orgCode"`
 }
 
 type UploadFileResponse struct {

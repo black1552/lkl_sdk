@@ -1,5 +1,7 @@
 package model
 
+import "github.com/black1552/lkl_sdk/consts"
+
 type SeparateRequest struct {
 	ReqData *SeparateReqData `json:"req_data"` // 请求数据
 	Version string           `json:"version"`  // 版本号
@@ -13,7 +15,7 @@ type SeparateReqData struct {
 	OutSeparateNo string               `json:"out_separate_no"` // 商户分账指令流水号
 	TotalAmt      string               `json:"total_amt"`       // 分账总金额 [单位：分]
 	LklOrgNo      string               `json:"lkl_org_no"`      // 拉卡拉机构编号 非必填
-	CalType       string               `json:"cal_type"`        // 分账计算类型 0- 按照指定金额，1- 按照指定比例。默认 0 非必填
+	CalType       consts.CalType       `json:"cal_type"`        // 分账计算类型 0- 按照指定金额，1- 按照指定比例。默认 0 非必填
 	SeparateType  string               `json:"separate_type"`
 	NotifyUrl     string               `json:"notify_url"` // 回调地址 分账，分账撤销或分账回退时，是异步接口。通过该地址通知商户最终处理结果。不传时，不回调
 	RecvDatas     []*SeparateRecvDatas `json:"recv_datas"` // 分账接收数据对象 分账接收方编号必须已创建

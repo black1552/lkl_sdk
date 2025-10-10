@@ -1,5 +1,7 @@
 package model
 
+import "github.com/black1552/lkl_sdk/consts"
+
 // OrderSplitLedgerRequest 订单分账请求结构体
 // 用于发起订单分账操作，支持向多个接收方进行分账
 // 拉卡拉SDK接口文档：订单分账接口
@@ -20,7 +22,7 @@ type OrderSplitLedgerReqData struct {
 	OutSeparateNo string                       `json:"out_separate_no"`      // 商户分账指令流水号，必传，长度32，每个商户号下唯一，否则会校验失败
 	TotalAmt      string                       `json:"total_amt"`            // 分账总金额，必传，长度15，单位为分
 	LklOrgNo      string                       `json:"lkl_org_no"`           // 拉卡拉机构编号，条件必传，长度16
-	CalType       string                       `json:"cal_type"`             // 分账计算类型，条件必传，长度2，取值说明：0-按照指定金额，1-按照指定比例，默认0
+	CalType       consts.CalType               `json:"cal_type"`             // 分账计算类型，条件必传，长度2，取值说明：0-按照指定金额，1-按照指定比例，默认0
 	NotifyUrl     string                       `json:"notify_url"`           // 回调地址，条件必传，长度128，分账、分账撤销或分账回退时，通过该地址通知商户最终处理结果，不传时不回调
 	RecvDatas     []*OrderSplitLedgerRecvDatas `json:"recv_datas,omitempty"` // 分账接收数据对象，条件必传，列表类型，分账接收方编号必须已创建
 }

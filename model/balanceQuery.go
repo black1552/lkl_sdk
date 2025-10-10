@@ -1,5 +1,7 @@
 package model
 
+import "github.com/black1552/lkl_sdk/consts"
+
 // BalanceQueryRequest 余额查询请求结构体
 // 用于向拉卡拉接口发送余额查询请求
 // 包含请求头信息和业务数据
@@ -23,7 +25,7 @@ type BalanceQueryReqData struct {
 	// 账号，若该参数上送，则payType将无效，非必传，最大长度32
 	PayNo string `json:"pay_no"`
 	// 账号类型（01：收款账户，02：付款账户，03：分账商户账户，04：分账接收方账户，05：充值代付账户，06：结算代付账户）-未上送则默认01，非必传，最大长度32
-	PayType string `json:"pay_type"`
+	PayType consts.PayType `json:"pay_type"`
 	// 账户标志（01:一般账户;03:虚户）-未上送则默认01，非必传，最大长度32
 	MgtFlag string `json:"mgt_flag"`
 }
