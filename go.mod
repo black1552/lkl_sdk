@@ -20,6 +20,7 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sql-driver/mysql v1.9.2 // indirect
 	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.9.3 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect
 	github.com/magiconair/properties v1.8.10 // indirect

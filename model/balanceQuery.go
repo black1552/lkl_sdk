@@ -27,7 +27,7 @@ type BalanceQueryReqData struct {
 	// 账号类型（01：收款账户，02：付款账户，03：分账商户账户，04：分账接收方账户，05：充值代付账户，06：结算代付账户）-未上送则默认01，非必传，最大长度32
 	PayType consts.PayType `json:"pay_type"`
 	// 账户标志（01:一般账户;03:虚户）-未上送则默认01，非必传，最大长度32
-	MgtFlag string `json:"mgt_flag"`
+	MgtFlag consts.MgtFlag `json:"mgt_flag"`
 }
 
 // BalanceQueryResponse 余额查询响应结构体

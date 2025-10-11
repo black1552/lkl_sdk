@@ -27,6 +27,13 @@ func (at AttType) Ptr() string {
 	return string(at)
 }
 
+type MgtFlag string
+
+const (
+	MGT_FLAG_AVERAGE   MgtFlag = "01" // 一般账户
+	MGT_FLAG_HOUSEHOLD MgtFlag = "03" // 虚户
+)
+
 type SplitRange string
 
 const (
