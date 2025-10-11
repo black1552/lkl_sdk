@@ -46,3 +46,15 @@ const (
 	// LKL_RECONF_SUBMIT 拉卡拉商户进件复议提交
 	LKL_RECONF_SUBMIT = "/v2/mms/openApi/reconsiderSubmit"
 )
+
+// unifiedReturn  统一退货API地址
+const (
+	// LKL_UNIFIED_RETURN_MERGE_REFUND_URL 拉卡拉合单退货
+	LKL_UNIFIED_RETURN_MERGE_REFUND_URL = "/v3/rfd/refund_front/merge_refund"
+	// LKL_UNIFIED_RETURN_REFUND_URL 拉卡拉退货
+	LKL_UNIFIED_RETURN_REFUND_URL = "/v3/rfd/refund_front/refund"
+	// LKL_UNIFIED_RETURN_REFUND_QUERY_URL 拉卡拉退货查询
+	LKL_UNIFIED_RETURN_REFUND_QUERY_URL = "/v3/rfd/refund_front/refund_query"
+	// LKL_UNIFIED_RETURN_REFUND_FEE_URL 拉卡拉退货手续费查询
+	LKL_UNIFIED_RETURN_REFUND_FEE_URL = "/v3/rfd/refund_front/refund_fee"
+)

@@ -1,10 +1,9 @@
 package lklsdk
 
 import (
-	"time"
-
 	"github.com/black1552/lkl_sdk/consts"
 	"github.com/black1552/lkl_sdk/model"
+	"github.com/gogf/gf/v2/os/gtime"
 )
 
 // AccountService 账户服务
@@ -26,7 +25,7 @@ func (a *AccountService[T]) BalanceQuery(req *model.BalanceQueryReqData) (*T, er
 
 	// 构建BaseModel请求
 	baseReq := model.BalanceQueryRequest{
-		ReqTime: time.Now().Format("20060102150405"),
+		ReqTime: gtime.Now().Format("YmdHis"),
 		Version: "3.0",
 		ReqData: req,
 	}
@@ -46,7 +45,7 @@ func (a *AccountService[T]) Withdraw(req *model.WithdrawReqData) (*T, error) {
 
 	// 构建BaseModel请求
 	baseReq := model.WithdrawRequest{
-		ReqTime: time.Now().Format("20060102150405"),
+		ReqTime: gtime.Now().Format("YmdHis"),
 		Version: "3.0",
 		ReqData: req,
 	}
