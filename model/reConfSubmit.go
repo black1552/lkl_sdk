@@ -38,12 +38,22 @@ type ReConfSubmitResponse struct {
 	ReqId string `json:"reqId"`
 	// RetCode 返回码
 	RetCode string `json:"retCode"`
+	// md 随机字符串
+	Md string `json:"md"`
+	// RespData 响应业务参数
+	RespData *ReConfSubmitResponseData `json:"respData"`
 	// RetMsg 返回消息
 	RetMsg string `json:"retMsg"`
 	// Timestamp 时间戳
 	Timestamp int64 `json:"timestamp"`
 	// Ver 版本号
 	Ver string `json:"ver"`
+}
+type ReConfSubmitResponseData struct {
+	// OrgCode 机构代码
+	OrgCode string `json:"orgCode"`
+	// OrderNo 订单号
+	OrderNo string `json:"orderNo"`
 }
 
 func (t *ReConfSubmitResponse) SuccessOrFail() bool {

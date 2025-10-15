@@ -49,6 +49,10 @@ type MerValidateResponse struct {
 	CmdRetCode string `json:"cmdRetCode"`
 	// ReqId 请求ID
 	ReqId string `json:"reqId"`
+	// md 随机字符串
+	Md string `json:"md"`
+	// RespData 响应业务参数
+	RespData *MerValidateResponseData `json:"respData"`
 	// RetCode 返回码
 	RetCode string `json:"retCode"`
 	// RetMsg 返回消息
@@ -57,6 +61,13 @@ type MerValidateResponse struct {
 	Timestamp int64 `json:"timestamp"`
 	// Ver 版本号
 	Ver string `json:"ver"`
+}
+
+type MerValidateResponseData struct {
+	// OrgCode 机构代码
+	OrgCode string `json:"orgCode"`
+	// OrderNo 订单号
+	OrderNo string `json:"orderNo"`
 }
 
 func (t *MerValidateResponse) SuccessOrFail() bool {

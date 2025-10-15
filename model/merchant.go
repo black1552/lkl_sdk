@@ -10,7 +10,7 @@ type MerchantApplyRequest struct {
 	ReqId     string                `json:"reqId"`     // 请求时间，格式为yyyyMMddHHmmss，必填
 	Timestamp int64                 `json:"timestamp"` // 接口版本，固定值"1.0"，必填
 	Ver       string                `json:"ver"`       // 接口版本，固定值"1.0"，必填
-	ReqData   *MerchantApplyReqData `json:"req_data"`  // 请求业务参数，必填
+	ReqData   *MerchantApplyReqData `json:"reqData"`   // 请求业务参数，必填
 }
 
 // MerchantApplyReqData 商户进件请求业务数据结构体
@@ -88,9 +88,10 @@ type FileData struct {
 // MerchantApplyResponse 商户进件响应结构体
 
 type MerchantApplyResponse struct {
-	RetCode    string                 `json:"retCode"`    // 响应码，成功为"0000"，其他为错误码
-	RetMsg     string                 `json:"retMsg"`     // 响应描述
-	Timestamp  int64                  `json:"timestamp"`  // 响应描述
+	RetCode    string                 `json:"retCode"`   // 响应码，成功为"0000"，其他为错误码
+	RetMsg     string                 `json:"retMsg"`    // 响应描述
+	Timestamp  int64                  `json:"timestamp"` // 响应描述
+	Md         string                 `json:"md"`
 	Ver        string                 `json:"ver"`        // 响应描述
 	ReqId      string                 `json:"reqId"`      // 响应描述
 	CmdRetCode string                 `json:"cmdRetCode"` // 响应描述
