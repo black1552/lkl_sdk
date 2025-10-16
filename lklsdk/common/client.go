@@ -100,7 +100,7 @@ func (c *Client[T]) DoRequest(url string, reqData interface{}) (*T, error) {
 	if err != nil {
 		return nil, fmt.Errorf("清理JSON空值失败: %v", err)
 	}
-	g.Log().Infof(c.ctx, "清理后的json: %+v", reqJson)
+	g.Log().Infof(c.ctx, "清理后的json: %v", string(reqJson))
 
 	auth, err := c.generateSign(reqJson)
 	if err != nil {
