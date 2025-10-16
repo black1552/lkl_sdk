@@ -8,7 +8,6 @@ import (
 	"crypto/sha256"
 	"crypto/x509"
 	"encoding/base64"
-	"encoding/json"
 	"encoding/pem"
 	"fmt"
 	ran "math/rand"
@@ -101,14 +100,9 @@ func (c *Client[T]) DoRequest(url string, reqData interface{}) (*T, error) {
 	if err != nil {
 		return nil, fmt.Errorf("清理JSON空值失败: %v", err)
 	}
-	g.Log().Infof(c.ctx, "清理后的json: %s", reqJson)
-	// 序列化为JSON
-	jsonData, err := json.Marshal(reqJson)
-	if err != nil {
-		return nil, fmt.Errorf("序列化请求数据失败: %v", err)
-	}
+	g.Log().Infof(c.ctx, "清理后的json: %+v", reqJson)
 
-	auth, err := c.generateSign(jsonData)
+	auth, err := c.generateSign(reqJson)
 	if err != nil {
 		return nil, fmt.Errorf("生成签名失败: %v", err)
 	}
@@ -119,5 +113,5 @@ func (c *Client[T]) DoRequest(url string, reqData interface{}) (*T, error) {
 	}
 	// 设置其他必要的请求头
 
-	return utils.NewClient[T](jsonData, url, header).Post(c.ctx)
+	return utils.NewClient[T](reqJson, url, header).Post(c.ctx)
 }

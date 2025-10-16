@@ -6,12 +6,12 @@ import (
 )
 
 // CleanJSON 清理JSON字符串中的空值和0值字段
-func CleanJSON(jsonStr string) (string, error) {
+func CleanJSON(jsonStr string) ([]byte, error) {
 	var data interface{}
 
 	// 解析JSON字符串
 	if err := json.Unmarshal([]byte(jsonStr), &data); err != nil {
-		return "", err
+		return nil, err
 	}
 
 	// 递归清理数据
@@ -20,10 +20,10 @@ func CleanJSON(jsonStr string) (string, error) {
 	// 转换回JSON字符串
 	result, err := json.Marshal(cleaned)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return string(result), nil
+	return result, nil
 }
 
 // cleanData 递归清理map或slice中的空值和0值
