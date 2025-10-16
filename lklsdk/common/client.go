@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/black1552/base-common/utils"
+	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/util/gconv"
 )
@@ -91,8 +92,16 @@ func (c *Client[T]) loadPrivateKey() (*rsa.PrivateKey, error) {
 
 // DoRequest 发送HTTP请求
 func (c *Client[T]) DoRequest(url string, reqData interface{}) (*T, error) {
+	jsonStr, err := gjson.EncodeString(reqData)
+	if err != nil {
+		return nil, fmt.Errorf("请求参数转JSON字符串失败: %v", err)
+	}
+	reqJson, err := CleanJSON(jsonStr)
+	if err != nil {
+		return nil, fmt.Errorf("清理JSON空值失败: %v", err)
+	}
 	// 序列化为JSON
-	jsonData, err := json.Marshal(reqData)
+	jsonData, err := json.Marshal(reqJson)
 	if err != nil {
 		return nil, fmt.Errorf("序列化请求数据失败: %v", err)
 	}
