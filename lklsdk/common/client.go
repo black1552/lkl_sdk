@@ -16,6 +16,7 @@ import (
 
 	"github.com/black1552/base-common/utils"
 	"github.com/gogf/gf/v2/encoding/gjson"
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/util/gconv"
 )
@@ -100,6 +101,7 @@ func (c *Client[T]) DoRequest(url string, reqData interface{}) (*T, error) {
 	if err != nil {
 		return nil, fmt.Errorf("清理JSON空值失败: %v", err)
 	}
+	g.Log().Infof(c.ctx, "清理后的json: %s", reqJson)
 	// 序列化为JSON
 	jsonData, err := json.Marshal(reqJson)
 	if err != nil {
