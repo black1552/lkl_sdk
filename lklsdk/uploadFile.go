@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/black1552/lkl_sdk/consts"
+	"github.com/black1552/lkl_sdk/lklsdk/common"
 	"github.com/black1552/lkl_sdk/model"
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/util/gconv"
@@ -12,11 +13,11 @@ import (
 
 // UploadFileService 交易服务
 type UploadFileService[T any] struct {
-	client *Client[T]
+	client *common.Client[T]
 }
 
 // NewUploadFileService 创建交易服务实例
-func NewUploadFileService[T any](client *Client[T]) *UploadFileService[T] {
+func NewUploadFileService[T any](client *common.Client[T]) *UploadFileService[T] {
 	return &UploadFileService[T]{
 		client: client,
 	}
@@ -39,7 +40,7 @@ func (t *UploadFileService[T]) UploadFileQuery(req *model.UploadFileReqData) (*T
 	}
 
 	// 发送请求
-	respBody, err := t.client.doRequest(url, baseReq)
+	respBody, err := t.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}

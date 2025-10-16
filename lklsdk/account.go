@@ -2,17 +2,18 @@ package lklsdk
 
 import (
 	"github.com/black1552/lkl_sdk/consts"
+	"github.com/black1552/lkl_sdk/lklsdk/common"
 	"github.com/black1552/lkl_sdk/model"
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
 // AccountService 账户服务
 type AccountService[T any] struct {
-	client *Client[T]
+	client *common.Client[T]
 }
 
 // NewAccountService 创建账户服务实例
-func NewAccountService[T any](client *Client[T]) *AccountService[T] {
+func NewAccountService[T any](client *common.Client[T]) *AccountService[T] {
 	return &AccountService[T]{
 		client: client,
 	}
@@ -30,7 +31,7 @@ func (a *AccountService[T]) BalanceQuery(req *model.BalanceQueryReqData) (*T, er
 		ReqData: req,
 	}
 	// 发送请求
-	respBody, err := a.client.doRequest(url, baseReq)
+	respBody, err := a.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +52,7 @@ func (a *AccountService[T]) Withdraw(req *model.WithdrawReqData) (*T, error) {
 	}
 
 	// 发送请求
-	respBody, err := a.client.doRequest(url, baseReq)
+	respBody, err := a.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}

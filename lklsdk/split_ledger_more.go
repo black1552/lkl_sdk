@@ -29,7 +29,7 @@ func (s *SplitLedgerService[T]) ApplyBind(req *model.ApplyBindReqData) (*T, erro
 	}
 
 	// 发送请求
-	respBody, err := s.client.doRequest(url, baseReq)
+	respBody, err := s.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func (s *SplitLedgerService[T]) QuerySplitBalance(req *model.SplitBalanceReqData
 	}
 
 	// 发送请求
-	respBody, err := s.client.doRequest(url, baseReq)
+	respBody, err := s.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (s *SplitLedgerService[T]) OrderSplitLedger(req *model.OrderSplitLedgerReqD
 	}
 
 	// 发送请求
-	respBody, err := s.client.doRequest(url, baseReq)
+	respBody, err := s.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}

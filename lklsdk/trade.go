@@ -4,16 +4,17 @@ import (
 	"time"
 
 	"github.com/black1552/lkl_sdk/consts"
+	"github.com/black1552/lkl_sdk/lklsdk/common"
 	"github.com/black1552/lkl_sdk/model"
 )
 
 // TradeService 交易服务
 type TradeService[T any] struct {
-	client *Client[T]
+	client *common.Client[T]
 }
 
 // NewTradeService 创建交易服务实例
-func NewTradeService[T any](client *Client[T]) *TradeService[T] {
+func NewTradeService[T any](client *common.Client[T]) *TradeService[T] {
 	return &TradeService[T]{
 		client: client,
 	}
@@ -28,12 +29,12 @@ func (t *TradeService[T]) TradeQuery(req *model.TradeQueryReqData) (*T, error) {
 	baseReq := model.TradeQuery{
 		ReqTime:    time.Now().Format("20060102150405"),
 		Version:    "3.0",
-		OutOrgCode: t.client.config.AppId,
+		OutOrgCode: t.client.Config.AppId,
 		ReqData:    req,
 	}
 
 	// 发送请求
-	respBody, err := t.client.doRequest(url, baseReq)
+	respBody, err := t.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +50,7 @@ func (t *TradeService[T]) PreOrder(req *model.PreorderReqData) (*T, error) {
 	baseReq := model.NewPreorder(req)
 
 	// 发送请求
-	respBody, err := t.client.doRequest(url, baseReq)
+	respBody, err := t.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +66,7 @@ func (t *TradeService[T]) Refound(req *model.RefundReqData) (*T, error) {
 	// 构建BaseModel请求
 	baseReq := model.NewRefund(req)
 	// 发送请求
-	respBody, err := t.client.doRequest(url, baseReq)
+	respBody, err := t.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}

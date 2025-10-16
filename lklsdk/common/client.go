@@ -23,7 +23,7 @@ import (
 
 // Client 拉卡拉SDK客户端
 type Client[T any] struct {
-	config   *Config
+	Config   *Config
 	response T
 	ctx      context.Context
 }
@@ -36,7 +36,7 @@ func NewClient[T any](ctx context.Context, cfgJson string) *Client[T] {
 		return nil
 	}
 	return &Client[T]{
-		config: config,
+		Config: config,
 		ctx:    ctx,
 	}
 }
@@ -57,7 +57,7 @@ func (c *Client[T]) generateSign(request []byte) (string, error) {
 	timestamp := fmt.Sprintf("%d", time.Now().Unix())
 
 	// 构建待签名报文
-	signData := fmt.Sprintf("%s\n%s\n%s\n%s\n%s\n", c.config.AppId, c.config.SerialNo, timestamp, nonceStr, string(request))
+	signData := fmt.Sprintf("%s\n%s\n%s\n%s\n%s\n", c.Config.AppId, c.Config.SerialNo, timestamp, nonceStr, string(request))
 
 	// 计算签名
 	hashed := sha256.Sum256([]byte(signData))
@@ -74,12 +74,12 @@ func (c *Client[T]) generateSign(request []byte) (string, error) {
 
 	// 构建Authorization头
 	authorization := fmt.Sprintf("LKLAPI-SHA256withRSA appid=\"%s\",serial_no=\"%s\",timestamp=\"%s\",nonce_str=\"%s\",signature=\"%s\"",
-		c.config.AppId, c.config.SerialNo, timestamp, nonceStr, signatureBase64)
+		c.Config.AppId, c.Config.SerialNo, timestamp, nonceStr, signatureBase64)
 	return authorization, nil
 }
 
 func (c *Client[T]) loadPrivateKey() (*rsa.PrivateKey, error) {
-	block, _ := pem.Decode(gfile.GetBytes(c.config.PrivateKey))
+	block, _ := pem.Decode(gfile.GetBytes(c.Config.PrivateKey))
 	if block == nil {
 		return nil, fmt.Errorf("无法解码私钥PEM数据")
 	}

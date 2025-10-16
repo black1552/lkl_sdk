@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/black1552/lkl_sdk/consts"
+	"github.com/black1552/lkl_sdk/lklsdk/common"
 	"github.com/black1552/lkl_sdk/model"
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/util/gconv"
@@ -12,11 +13,11 @@ import (
 
 // MerService 商户服务
 type MerService[T any] struct {
-	client *Client[T]
+	client *common.Client[T]
 }
 
 // NewMerService 创建交易服务实例
-func NewMerService[T any](client *Client[T]) *MerService[T] {
+func NewMerService[T any](client *common.Client[T]) *MerService[T] {
 	return &MerService[T]{
 		client: client,
 	}
@@ -39,7 +40,7 @@ func (t *MerService[T]) AddMer(req *model.MerchantApplyReqData) (*T, error) {
 	}
 
 	// 发送请求
-	respBody, err := t.client.doRequest(url, baseReq)
+	respBody, err := t.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +63,7 @@ func (t *MerService[T]) QueryMer(req *model.QueryMerRequestData) (*T, error) {
 	}
 
 	// 发送请求
-	respBody, err := t.client.doRequest(url, baseReq)
+	respBody, err := t.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +85,7 @@ func (t *MerService[T]) MerValidate(req *model.MerValidateRequestData) (*T, erro
 	}
 
 	// 发送请求
-	respBody, err := t.client.doRequest(url, baseReq)
+	respBody, err := t.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -107,7 +108,7 @@ func (t *MerService[T]) ReconsiderSubmit(req *model.ReConfSubmitRequestData) (*T
 	}
 
 	// 发送请求
-	respBody, err := t.client.doRequest(url, baseReq)
+	respBody, err := t.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}

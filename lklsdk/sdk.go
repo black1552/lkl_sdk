@@ -3,12 +3,13 @@ package lklsdk
 import (
 	"context"
 
+	"github.com/black1552/lkl_sdk/lklsdk/common"
 	"github.com/black1552/lkl_sdk/model"
 )
 
 // SDK 拉卡拉SDK主入口
 type SDK[T any] struct {
-	Client      *Client[T]
+	Client      *common.Client[T]
 	SplitLedger *SplitLedgerService[T]
 	Trade       *TradeService[T]
 	Account     *AccountService[T]
@@ -19,7 +20,7 @@ type SDK[T any] struct {
 
 // NewSDK 创建拉卡拉SDK实例
 func NewSDK[T any](ctx context.Context, cfgJson string) *SDK[T] {
-	client := NewClient[T](ctx, cfgJson)
+	client := common.NewClient[T](ctx, cfgJson)
 	return &SDK[T]{
 		Client:      client,
 		SplitLedger: NewSplitLedgerService(client),

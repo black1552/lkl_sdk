@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/black1552/lkl_sdk/consts"
+	"github.com/black1552/lkl_sdk/lklsdk/common"
 	"github.com/black1552/lkl_sdk/model"
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/os/gtime"
@@ -13,11 +14,11 @@ import (
 
 // SplitLedgerService 分账服务
 type SplitLedgerService[T any] struct {
-	client *Client[T]
+	client *common.Client[T]
 }
 
 // NewSplitLedgerService 创建分账服务实例
-func NewSplitLedgerService[T any](client *Client[T]) *SplitLedgerService[T] {
+func NewSplitLedgerService[T any](client *common.Client[T]) *SplitLedgerService[T] {
 	return &SplitLedgerService[T]{
 		client: client,
 	}
@@ -41,7 +42,7 @@ func (s *SplitLedgerService[T]) ApplyLedgerMer(req *model.ApplyLedgerMerReqData)
 	}
 
 	// 发送请求
-	respBody, err := s.client.doRequest(url, baseReq)
+	respBody, err := s.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +68,7 @@ func (s *SplitLedgerService[T]) ApplyLedgerReceiver(req *model.ApplyLedgerReceiv
 	}
 
 	// 发送请求
-	respBody, err := s.client.doRequest(url, baseReq)
+	respBody, err := s.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +89,7 @@ func (s *SplitLedgerService[T]) QueryLedgerMer(req *model.QueryLedgerMerReqData)
 	}
 
 	// 发送请求
-	respBody, err := s.client.doRequest(url, baseReq)
+	respBody, err := s.client.DoRequest(url, baseReq)
 	if err != nil {
 		return nil, err
 	}
