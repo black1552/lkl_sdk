@@ -81,8 +81,8 @@ type FeeData struct {
 // FileData 附件集合结构体
 
 type FileData struct {
-	AttField string `json:"attField"` // 文件编号/附件上传后返回的编号，必填
-	AttType  string `json:"attType"`  // 附件类型，必填
+	AttFileId string `json:"attFileId"` // 文件编号/附件上传后返回的编号，必填
+	AttType   string `json:"attType"`   // 附件类型，必填
 }
 
 // MerchantApplyResponse 商户进件响应结构体
