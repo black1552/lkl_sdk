@@ -19,6 +19,7 @@ func NewQStatus(client *common.Client[ECQueryStatusResponse]) *QStatus {
 
 // QueryStatus 电子合同查询状态
 // 提供申请过与拉卡拉电子签约用户查询电子合同签署状态
+// https://o.lakala.com/#/home/document/detail?id=293
 func (q *QStatus) QueryStatus(req *ECQueryStatusRequestData) (*ECQueryStatusResponse, error) {
 	// 构建请求
 	baseReq := ECQueryStatusRequest{
@@ -33,6 +34,7 @@ func (q *QStatus) QueryStatus(req *ECQueryStatusRequestData) (*ECQueryStatusResp
 
 // QueryStatusTest 电子合同查询状态（测试环境）
 // 提供申请过与拉卡拉电子签约用户查询电子合同签署状态
+// https://o.lakala.com/#/home/document/detail?id=293
 func (q *QStatus) QueryStatusTest(req *ECQueryStatusRequestData) (*ECQueryStatusResponse, error) {
 	// 构建请求
 	baseReq := ECQueryStatusRequest{

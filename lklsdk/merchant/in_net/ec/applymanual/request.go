@@ -1,5 +1,9 @@
 package applymanual
 
+import (
+	"github.com/black1552/lkl_sdk/consts"
+)
+
 // ECApplyManualRequestData 电子合同人工复核申请请求数据结构体
 type ECApplyManualRequestData struct {
 	Version   string        `json:"version"`           // 版本号，默认1.0
@@ -13,7 +17,7 @@ type ECApplyManualRequestData struct {
 
 // ECFileData 附件信息结构体
 type ECFileData struct {
-	AttachType      string `json:"attach_type"`       // 附件类型，必填，枚举值见文档
+	AttachType      consts.AttType `json:"attach_type"`       // 附件类型，必填，枚举值见文档
 	AttachName      string `json:"attach_name"`       // 附件名称，必填，最大32字符
 	AttachExtName   string `json:"attach_ext_name"`   // 附件格式，必填，jpg、pdf等
 	AttachStorePath string `json:"attach_store_path"` // 附件坐标URL，必填，如G1/M00/00/61/CrFdEl3IyceAVVd8AAA0ADuZsA0911.jpg

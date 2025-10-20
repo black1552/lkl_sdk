@@ -16,7 +16,8 @@ func NewQmaStatus(client *common.Client[ECQmaStatusResponse]) *QmaStatus {
 	return &QmaStatus{Client: client}
 }
 
-// ECQmaStatus 电子合同人工复核结果查询（生产环境）
+// ECQmaStatus
+// https://o.lakala.com/#/home/document/detail?id=982
 func (q *QmaStatus) ECQmaStatus(req *ECQmaStatusRequestData) (*ECQmaStatusResponse, error) {
 	// 创建请求对象
 	request := ECQmaStatusRequest{
@@ -28,6 +29,7 @@ func (q *QmaStatus) ECQmaStatus(req *ECQmaStatusRequestData) (*ECQmaStatusRespon
 }
 
 // ECQmaStatusTest 电子合同人工复核结果查询（测试环境）
+// https://o.lakala.com/#/home/document/detail?id=982
 func (q *QmaStatus) ECQmaStatusTest(req *ECQmaStatusRequestData) (*ECQmaStatusResponse, error) {
 	// 创建请求对象
 	request := ECQmaStatusRequest{

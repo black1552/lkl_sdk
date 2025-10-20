@@ -19,6 +19,7 @@ func NewDownload(client *common.Client[ECDownloadResponse]) *Download {
 
 // ECDownload 电子合同下载
 // 提供已完成的签约电子合同下载
+// https://o.lakala.com/#/home/document/detail?id=294
 func (d *Download) ECDownload(req *ECDownloadRequestData) (*ECDownloadResponse, error) {
 	// 构建请求
 	baseReq := ECDownloadRequest{
@@ -33,6 +34,7 @@ func (d *Download) ECDownload(req *ECDownloadRequestData) (*ECDownloadResponse, 
 
 // ECDownloadTest 电子合同下载（测试环境）
 // 提供已完成的签约电子合同下载
+// https://o.lakala.com/#/home/document/detail?id=294
 func (d *Download) ECDownloadTest(req *ECDownloadRequestData) (*ECDownloadResponse, error) {
 	// 构建请求
 	baseReq := ECDownloadRequest{

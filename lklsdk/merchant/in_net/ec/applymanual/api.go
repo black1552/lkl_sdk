@@ -19,6 +19,7 @@ func NewApplyManual(client *common.Client[ECApplyManualResponse]) *ApplyManual {
 }
 
 // ECApplyManual 电子合同人工复核申请（生产环境）
+// https://o.lakala.com/#/home/document/detail?id=981
 func (a *ApplyManual) ECApplyManual(req *ECApplyManualRequestData) (*ECApplyManualResponse, error) {
 	// 创建请求对象
 	request := ECApplyManualRequest{
@@ -30,6 +31,7 @@ func (a *ApplyManual) ECApplyManual(req *ECApplyManualRequestData) (*ECApplyManu
 }
 
 // ECApplyManualTest 电子合同人工复核申请（测试环境）
+// https://o.lakala.com/#/home/document/detail?id=981
 func (a *ApplyManual) ECApplyManualTest(req *ECApplyManualRequestData) (*ECApplyManualResponse, error) {
 	// 创建请求对象
 	request := ECApplyManualRequest{

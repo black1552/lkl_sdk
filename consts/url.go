@@ -1,7 +1,8 @@
 package consts
 
 const (
-	BASE_URL = "https://s2.lakala.com/api"
+	BASE_URL      = "https://s2.lakala.com/api"
+	BASE_TEST_URL = "https://test.wsmsd.cn/sit/api"
 )
 
 const (
@@ -45,6 +46,16 @@ const (
 	LKL_MER_VALIDATE = "/v2/mms/openApi/verifyContractInfo"
 	// LKL_RECONF_SUBMIT 拉卡拉商户进件复议提交
 	LKL_RECONF_SUBMIT = "/v2/mms/openApi/reconsiderSubmit"
+	// LKL_EC_APPLY 拉卡拉商户电子合同
+	LKL_EC_APPLY = "/v3/mms/open_api/ec/apply"
+	// LKL_EC_QUERY_STATUS 拉卡拉商户电子合同查询状态
+	LKL_EC_QUERY_STATUS = "/v3/mms/open_api/ec/q_status"
+	// LKL_EC_DOWNLOAD 拉卡拉商户电子合同下载
+	LKL_EC_DOWNLOAD = "/v3/mms/open_api/ec/download"
+	// LKL_EC_APPLY_MANUAL 拉卡拉商户电子合同人工复核申请
+	LKL_EC_APPLY_MANUAL = "/v3/mms/open_api/ec/apply_manual"
+	// LKL_EC_QMA_STATUS 拉卡拉商户电子合同人工复核结果查询
+	LKL_EC_QMA_STATUS = "/v3/mms/open_api/ec/qma_status"
 )
 
 // unifiedReturn  统一退货API地址

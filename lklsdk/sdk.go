@@ -4,31 +4,46 @@ import (
 	"context"
 
 	"github.com/black1552/lkl_sdk/lklsdk/common"
+	ecApply "github.com/black1552/lkl_sdk/lklsdk/merchant/in_net/ec/apply"
+	ecApplyManual "github.com/black1552/lkl_sdk/lklsdk/merchant/in_net/ec/applymanual"
+	ecDownload "github.com/black1552/lkl_sdk/lklsdk/merchant/in_net/ec/download"
+	ecQmaStatus "github.com/black1552/lkl_sdk/lklsdk/merchant/in_net/ec/qmastatus"
+	ecQuery "github.com/black1552/lkl_sdk/lklsdk/merchant/in_net/ec/querystatus"
 	"github.com/black1552/lkl_sdk/model"
 )
 
 // SDK 拉卡拉SDK主入口
 type SDK[T any] struct {
-	Client      *common.Client[T]
-	SplitLedger *SplitLedgerService[T]
-	Trade       *TradeService[T]
-	Account     *AccountService[T]
-	UploadFile  *UploadFileService[T]
-	MergePre    *MergePreService[T]
-	Merchant    *MerService[T]
+	Client          *common.Client[T]
+	SplitLedger     *SplitLedgerService[T]
+	Trade           *TradeService[T]
+	Account         *AccountService[T]
+	UploadFile      *UploadFileService[T]
+	MergePre        *MergePreService[T]
+	Merchant        *MerService[T]
+	EC              *ecApply.Apply
+	ECQuery         *ecQuery.QStatus
+	ECFileDownload  *ecDownload.Download
+	ECPeApplyManual *ecApplyManual.ApplyManual
+	ECPeQmaStatus   *ecQmaStatus.QmaStatus
 }
 
 // NewSDK 创建拉卡拉SDK实例
 func NewSDK[T any](ctx context.Context, cfgJson string) *SDK[T] {
 	client := common.NewClient[T](ctx, cfgJson)
 	return &SDK[T]{
-		Client:      client,
-		SplitLedger: NewSplitLedgerService(client),
-		Trade:       NewTradeService(client),
-		Account:     NewAccountService(client),
-		UploadFile:  NewUploadFileService(client),
-		MergePre:    NewMergePreService(client),
-		Merchant:    NewMerService(client),
+		Client:          client,
+		SplitLedger:     NewSplitLedgerService(client),
+		Trade:           NewTradeService(client),
+		Account:         NewAccountService(client),
+		UploadFile:      NewUploadFileService(client),
+		MergePre:        NewMergePreService(client),
+		Merchant:        NewMerService(client),
+		EC:              ecApply.NewEcApply(common.NewClient[ecApply.ECApplyResponse](ctx, cfgJson)),
+		ECQuery:         ecQuery.NewQStatus(common.NewClient[ecQuery.ECQueryStatusResponse](ctx, cfgJson)),
+		ECFileDownload:  ecDownload.NewDownload(common.NewClient[ecDownload.ECDownloadResponse](ctx, cfgJson)),
+		ECPeApplyManual: ecApplyManual.NewApplyManual(common.NewClient[ecApplyManual.ECApplyManualResponse](ctx, cfgJson)),
+		ECPeQmaStatus:   ecQmaStatus.NewQmaStatus(common.NewClient[ecQmaStatus.ECQmaStatusResponse](ctx, cfgJson)),
 	}
 }
 
@@ -116,4 +131,54 @@ func (s *SDK[T]) UploadFileQuery(req *model.UploadFileReqData) (*T, error) {
 // Withdraw 账户提现
 func (s *SDK[T]) Withdraw(req *model.WithdrawReqData) (*T, error) {
 	return s.Account.Withdraw(req)
+}
+
+// ECApply 电子合同申请
+func (s *SDK[T]) ECApply(req *ecApply.ECApplyRequestData) (*ecApply.ECApplyResponse, error) {
+	return s.EC.ECApply(req)
+}
+
+// ECApplyTest 电子合同申请（测试环境）
+func (s *SDK[T]) ECApplyTest(req *ecApply.ECApplyRequestData) (*ecApply.ECApplyResponse, error) {
+	return s.EC.ECApplyTest(req)
+}
+
+// ECQueryStatus 电子合同查询状态
+func (s *SDK[T]) ECQueryStatus(req *ecQuery.ECQueryStatusRequestData) (*ecQuery.ECQueryStatusResponse, error) {
+	return s.ECQuery.QueryStatus(req)
+}
+
+// ECQueryStatusTest 电子合同查询状态（测试环境）
+func (s *SDK[T]) ECQueryStatusTest(req *ecQuery.ECQueryStatusRequestData) (*ecQuery.ECQueryStatusResponse, error) {
+	return s.ECQuery.QueryStatusTest(req)
+}
+
+// ECDownload 电子合同下载
+func (s *SDK[T]) ECDownload(req *ecDownload.ECDownloadRequestData) (*ecDownload.ECDownloadResponse, error) {
+	return s.ECFileDownload.ECDownload(req)
+}
+
+// ECDownloadTest 电子合同下载（测试环境）
+func (s *SDK[T]) ECDownloadTest(req *ecDownload.ECDownloadRequestData) (*ecDownload.ECDownloadResponse, error) {
+	return s.ECFileDownload.ECDownloadTest(req)
+}
+
+// ECApplyManual 电子合同人工复核申请
+func (s *SDK[T]) ECApplyManual(req *ecApplyManual.ECApplyManualRequestData) (*ecApplyManual.ECApplyManualResponse, error) {
+	return s.ECPeApplyManual.ECApplyManual(req)
+}
+
+// ECApplyManualTest 电子合同人工复核申请（测试环境）
+func (s *SDK[T]) ECApplyManualTest(req *ecApplyManual.ECApplyManualRequestData) (*ecApplyManual.ECApplyManualResponse, error) {
+	return s.ECPeApplyManual.ECApplyManualTest(req)
+}
+
+// ECQmaStatus 电子合同人工复核结果查询
+func (s *SDK[T]) ECQmaStatus(req *ecQmaStatus.ECQmaStatusRequestData) (*ecQmaStatus.ECQmaStatusResponse, error) {
+	return s.ECPeQmaStatus.ECQmaStatus(req)
+}
+
+// ECQmaStatusTest 电子合同人工复核结果查询（测试环境）
+func (s *SDK[T]) ECQmaStatusTest(req *ecQmaStatus.ECQmaStatusRequestData) (*ecQmaStatus.ECQmaStatusResponse, error) {
+	return s.ECPeQmaStatus.ECQmaStatusTest(req)
 }

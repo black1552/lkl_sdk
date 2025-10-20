@@ -20,6 +20,7 @@ func NewEcApply(client *common.Client[ECApplyResponse]) *Apply {
 // 提供与拉卡拉进行电子签约的第四方进行电子合同申请
 // 电子合同签约成功后不需要将其下载出来作为附件上传，只需将电子合同编号（ecNo）
 // 在“新增商户入网”接口中在（contractNo）字段中传入即可
+// https://o.lakala.com/#/home/document/detail?id=289
 func (a *Apply) ECApply(req *ECApplyRequestData) (*ECApplyResponse, error) {
 	// 构建请求
 	baseReq := ECApplyRequest{
@@ -35,6 +36,7 @@ func (a *Apply) ECApply(req *ECApplyRequestData) (*ECApplyResponse, error) {
 // 提供与拉卡拉进行电子签约的第四方进行电子合同申请
 // 电子合同签约成功后不需要将其下载出来作为附件上传，只需将电子合同编号（ecNo）
 // 在“新增商户入网”接口中在（contractNo）字段中传入即可
+// https://o.lakala.com/#/home/document/detail?id=289
 func (a *Apply) ECApplyTest(req *ECApplyRequestData) (*ECApplyResponse, error) {
 	// 构建请求
 	baseReq := ECApplyRequest{
