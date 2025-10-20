@@ -6,14 +6,45 @@
 
 ```
 lklsdk/
-├── client.go           # 核心客户端
+├── account.go          # 账户相关功能
+├── common/             # 通用工具和客户端
+│   ├── client.go       # 核心客户端
+│   ├── json_cleaner.go # JSON清理工具
+│   └── structs.go      # 通用结构体定义
+├── merchant.go         # 商户相关功能
+├── merchant/           # 商户相关模块
+│   └── in_net/         # 网络接口
+│       └── ec/         # 电子合同功能
+│           ├── apply/             # 电子合同申请
+│           │   ├── api.go         # API实现
+│           │   ├── request.go     # 请求结构体
+│           │   └── response.go    # 响应结构体
+│           ├── applymanual/       # 电子合同人工复核申请
+│           │   ├── api.go         # API实现
+│           │   ├── request.go     # 请求结构体
+│           │   └── response.go    # 响应结构体
+│           ├── download/          # 电子合同下载
+│           │   ├── api.go         # API实现
+│           │   ├── request.go     # 请求结构体
+│           │   └── response.go    # 响应结构体
+│           ├── qmastatus/         # 电子合同人工复核结果查询
+│           │   ├── api.go         # API实现
+│           │   ├── request.go     # 请求结构体
+│           │   └── response.go    # 响应结构体
+│           └── querystatus/       # 电子合同签署状态查询
+│               ├── api.go         # API实现
+│               ├── request.go     # 请求结构体
+│               └── response.go    # 响应结构体
+├── mergePre.go         # 主扫合单交易功能
+├── sdk.go              # SDK主入口
 ├── split_ledger.go     # 分账基本功能
 ├── split_ledger_more.go # 分账扩展功能
 ├── trade.go            # 交易相关功能
-├── account.go          # 账户相关功能
-├── merge_pre.go        # 主扫合单交易功能
-├── sdk.go              # SDK主入口
-├── merchant.go         # 商户相关功能
+├── unifiedreturn/      # 统一退款功能
+│   ├── mergerefund/    # 合并退款
+│   ├── refund/         # 退款
+│   ├── refundfee/      # 退款手续费
+│   └── refundquery/    # 退款查询
 └── uploadFile.go       # 文件上传相关功能
 ```
 
