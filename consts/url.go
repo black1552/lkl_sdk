@@ -1,7 +1,8 @@
 package consts
 
 const (
-	BASE_URL = "https://s2.lakala.com/api"
+	BASE_URL      = "https://s2.lakala.com/api"
+	BASE_TEST_URL = "https://test.wsmsd.cn/sit/api"
 )
 
 // basePay/labs 基础支付聚合扫码API地址
