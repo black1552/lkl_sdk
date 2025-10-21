@@ -7,13 +7,13 @@ import (
 )
 
 // Refund 统一退货API结构体
-type Refund[T any] struct {
-	client *common.Client[T]
+type Refund struct {
+	client *common.Client[ResponseRefund]
 }
 
 // NewRefund 创建统一退货API实例
-func NewRefund[T any](client *common.Client[T]) *Refund[T] {
-	return &Refund[T]{
+func NewRefund(client *common.Client[ResponseRefund]) *Refund {
+	return &Refund{
 		client: client,
 	}
 }
@@ -21,7 +21,7 @@ func NewRefund[T any](client *common.Client[T]) *Refund[T] {
 // Refund 发起统一退货请求
 // request: 统一退货请求参数
 // 返回统一退货响应结果和错误信息
-func (api *Refund[T]) Refund(req *RequestDataRefund) (*T, error) {
+func (api *Refund) Refund(req *RequestDataRefund) (*ResponseRefund, error) {
 	// 构建请求参数
 	url := consts.BASE_URL + consts.LKL_UNIFIED_RETURN_REFUND_URL
 	// 构建BaseModel请求

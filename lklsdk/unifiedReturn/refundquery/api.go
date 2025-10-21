@@ -6,21 +6,19 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-type RefundQuery[T any] struct {
-	client *common.Client[T]
+type RefundQuery struct {
+	client *common.Client[ResponseRefundQuery]
 }
 
 // NewRefundQuery 创建统一退货查询API实例
-func NewRefundQuery[T any](client *common.Client[T]) *RefundQuery[T] {
-	return &RefundQuery[T]{
+func NewRefundQuery(client *common.Client[ResponseRefundQuery]) *RefundQuery {
+	return &RefundQuery{
 		client: client,
 	}
 }
 
 // RefundQuery 发起统一退货查询请求
-func (api *RefundQuery[T]) RefundQuery(req *RequestDataRefundQuery) (*T, error) {
-	// 构建请求参数
-	url := consts.BASE_URL + consts.LKL_UNIFIED_RETURN_REFUND_QUERY_URL
+func (api *RefundQuery) RefundQuery(req *RequestDataRefundQuery) (*ResponseRefundQuery, error) {
 	// 构建BaseModel请求
 	baseReq := RequestRefundQuery{
 		ReqTime: gtime.Now().Format("YmdHis"),
@@ -28,10 +26,5 @@ func (api *RefundQuery[T]) RefundQuery(req *RequestDataRefundQuery) (*T, error) 
 		ReqData: req,
 	}
 
-	// 发送请求
-	respBody, err := api.client.DoRequest(url, baseReq)
-	if err != nil {
-		return nil, err
-	}
-	return respBody, nil
+	return api.client.DoRequest(consts.BASE_URL+consts.LKL_UNIFIED_RETURN_REFUND_QUERY_URL, baseReq)
 }
