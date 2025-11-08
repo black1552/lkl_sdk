@@ -54,9 +54,19 @@ func (s *SDK[T]) ReconsiderSubmit(req *model.ReConfSubmitRequestData) (*T, error
 	return s.Merchant.ReconsiderSubmit(req)
 }
 
+// ReconsiderSubmitTest 商户进件复议提交
+func (s *SDK[T]) ReconsiderSubmitTest(req *model.ReConfSubmitRequestData) (*T, error) {
+	return s.Merchant.ReconsiderSubmitTest(req)
+}
+
 // QueryMerchant 商户进件信息查询
 func (s *SDK[T]) QueryMerchant(req *model.QueryMerRequestData) (*T, error) {
 	return s.Merchant.QueryMer(req)
+}
+
+// QueryMerchantTest 商户进件信息查询
+func (s *SDK[T]) QueryMerchantTest(req *model.QueryMerRequestData) (*T, error) {
+	return s.Merchant.QueryMerTest(req)
 }
 
 // MerValidate 商户进件信息校验
@@ -64,9 +74,19 @@ func (s *SDK[T]) MerValidate(req *model.MerValidateRequestData) (*T, error) {
 	return s.Merchant.MerValidate(req)
 }
 
+// MerValidateTest 商户进件信息校验
+func (s *SDK[T]) MerValidateTest(req *model.MerValidateRequestData) (*T, error) {
+	return s.Merchant.MerValidateTest(req)
+}
+
 // AddMer 商户进件
 func (s *SDK[T]) AddMer(req *model.MerchantApplyReqData) (*T, error) {
 	return s.Merchant.AddMer(req)
+}
+
+// AddMerTest 商户进件
+func (s *SDK[T]) AddMerTest(req *model.MerchantApplyReqData) (*T, error) {
+	return s.Merchant.AddMerTest(req)
 }
 
 // MergePreOrder 主扫合单交易

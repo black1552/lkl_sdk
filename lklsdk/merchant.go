@@ -160,6 +160,29 @@ func (t *MerService[T]) MerValidateTest(req *model.MerValidateRequestData) (*T, 
 	return respBody, nil
 }
 
+func (t *MerService[T]) ReconsiderSubmit(req *model.ReConfSubmitRequestData) (*T, error) {
+	// 构建请求参数
+	url := consts.BASE_URL + consts.LKL_RECONF_SUBMIT
+	md5, err := gmd5.Encrypt(gconv.String(time.Now().Unix()))
+	if err != nil {
+		return nil, fmt.Errorf("创建ReqId失败")
+	}
+	// 构建BaseModel请求
+	baseReq := model.ReConfSubmitRequest{
+		ReqData:   req,
+		ReqId:     md5,
+		Timestamp: time.Now().Unix(),
+		Ver:       "1.0",
+	}
+
+	// 发送请求
+	respBody, err := t.client.DoRequest(url, baseReq)
+	if err != nil {
+		return nil, err
+	}
+	return respBody, nil
+}
+
 func (t *MerService[T]) ReconsiderSubmitTest(req *model.ReConfSubmitRequestData) (*T, error) {
 	// 构建请求参数
 	url := consts.BASE_TEST_URL + consts.LKL_RECONF_SUBMIT
