@@ -46,3 +46,26 @@ func (t *UploadFileService[T]) UploadFileQuery(req *model.UploadFileReqData) (*T
 	}
 	return respBody, nil
 }
+
+func (t *UploadFileService[T]) UploadFileQueryTest(req *model.UploadFileReqData) (*T, error) {
+	// 构建请求参数
+	url := consts.BASE_TEST_URL + consts.LKL_UPLOAD_FILE_URL
+	md5, err := gmd5.Encrypt(gconv.String(time.Now().Unix()))
+	if err != nil {
+		return nil, fmt.Errorf("创建ReqId失败")
+	}
+	// 构建BaseModel请求
+	baseReq := model.UploadFileRequest{
+		Timestamp: gconv.String(time.Now().Unix()),
+		Ver:       "1.0",
+		ReqId:     md5,
+		ReqData:   req,
+	}
+
+	// 发送请求
+	respBody, err := t.client.DoRequest(url, baseReq)
+	if err != nil {
+		return nil, err
+	}
+	return respBody, nil
+}

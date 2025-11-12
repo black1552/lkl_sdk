@@ -11,7 +11,6 @@ import (
 // CleanJSON 清理JSON字符串中的空值和0值字段
 func CleanJSON(jsonStr string) ([]byte, error) {
 	// 解析为JSON
-	//var data interface{}
 	json := gjson.NewWithOptions(jsonStr, gjson.Options{StrNumber: true})
 	glog.Infof(gctx.New(), "Cleaning JSON: %+v", json)
 	// 递归清理数据

@@ -104,9 +104,17 @@ func (s *SDK[T]) ApplyLedgerMer(req *model.ApplyLedgerMerReqData) (*T, error) {
 	return s.SplitLedger.ApplyLedgerMer(req)
 }
 
+func (s *SDK[T]) ApplyLedgerMerTest(req *model.ApplyLedgerMerReqData) (*T, error) {
+	return s.SplitLedger.ApplyLedgerMerTest(req)
+}
+
 // QueryLedgerMer 商户分账信息查询
 func (s *SDK[T]) QueryLedgerMer(req *model.QueryLedgerMerReqData) (*T, error) {
 	return s.SplitLedger.QueryLedgerMer(req)
+}
+
+func (s *SDK[T]) QueryLedgerMerTest(req *model.QueryLedgerMerReqData) (*T, error) {
+	return s.SplitLedger.QueryLedgerMerTest(req)
 }
 
 // ApplyLedgerReceiver 分账接收方创建申请
@@ -114,9 +122,17 @@ func (s *SDK[T]) ApplyLedgerReceiver(req *model.ApplyLedgerReceiverReqData) (*T,
 	return s.SplitLedger.ApplyLedgerReceiver(req)
 }
 
+func (s *SDK[T]) ApplyLedgerReceiverTest(req *model.ApplyLedgerReceiverReqData) (*T, error) {
+	return s.SplitLedger.ApplyLedgerReceiverTest(req)
+}
+
 // ApplyBind 分账关系绑定申请
 func (s *SDK[T]) ApplyBind(req *model.ApplyBindReqData) (*T, error) {
 	return s.SplitLedger.ApplyBind(req)
+}
+
+func (s *SDK[T]) ApplyBindTest(req *model.ApplyBindReqData) (*T, error) {
+	return s.SplitLedger.ApplyBindTest(req)
 }
 
 // QuerySplitBalance 可分账金额查询
@@ -124,9 +140,17 @@ func (s *SDK[T]) QuerySplitBalance(req *model.SplitBalanceReqData) (*T, error) {
 	return s.SplitLedger.QuerySplitBalance(req)
 }
 
+func (s *SDK[T]) QuerySplitBalanceTest(req *model.SplitBalanceReqData) (*T, error) {
+	return s.SplitLedger.QuerySplitBalanceTest(req)
+}
+
 // OrderSplitLedger 订单分账
 func (s *SDK[T]) OrderSplitLedger(req *model.OrderSplitLedgerReqData) (*T, error) {
 	return s.SplitLedger.OrderSplitLedger(req)
+}
+
+func (s *SDK[T]) OrderSplitLedgerTest(req *model.OrderSplitLedgerReqData) (*T, error) {
+	return s.SplitLedger.OrderSplitLedgerTest(req)
 }
 
 // TradeQuery 交易查询
@@ -144,13 +168,24 @@ func (s *SDK[T]) BalanceQuery(req *model.BalanceQueryReqData) (*T, error) {
 	return s.Account.BalanceQuery(req)
 }
 
+func (s *SDK[T]) BalanceQueryTest(req *model.BalanceQueryReqData) (*T, error) {
+	return s.Account.BalanceQueryTest(req)
+}
+
 func (s *SDK[T]) UploadFileQuery(req *model.UploadFileReqData) (*T, error) {
 	return s.UploadFile.UploadFileQuery(req)
+}
+func (s *SDK[T]) UploadFileQueryTest(req *model.UploadFileReqData) (*T, error) {
+	return s.UploadFile.UploadFileQueryTest(req)
 }
 
 // Withdraw 账户提现
 func (s *SDK[T]) Withdraw(req *model.WithdrawReqData) (*T, error) {
 	return s.Account.Withdraw(req)
+}
+
+func (s *SDK[T]) WithdrawTest(req *model.WithdrawReqData) (*T, error) {
+	return s.Account.WithdrawTest(req)
 }
 
 // ECApply 电子合同申请

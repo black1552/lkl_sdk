@@ -39,10 +39,48 @@ func (a *AccountService[T]) BalanceQuery(req *model.BalanceQueryReqData) (*T, er
 	return respBody, nil
 }
 
+func (a *AccountService[T]) BalanceQueryTest(req *model.BalanceQueryReqData) (*T, error) {
+	// 构建请求参数
+	url := consts.BASE_TEST_URL + consts.LKL_ACCOUNT_BALANCE_QUERY_URL
+
+	// 构建BaseModel请求
+	baseReq := model.BalanceQueryRequest{
+		ReqTime: gtime.Now().Format("YmdHis"),
+		Version: "3.0",
+		ReqData: req,
+	}
+	// 发送请求
+	respBody, err := a.client.DoRequest(url, baseReq)
+	if err != nil {
+		return nil, err
+	}
+
+	return respBody, nil
+}
+
 // Withdraw 账户提现
 func (a *AccountService[T]) Withdraw(req *model.WithdrawReqData) (*T, error) {
 	// 构建请求参数
 	url := consts.BASE_URL + consts.LKL_ACCOUNT_WITHDRAW_URL
+
+	// 构建BaseModel请求
+	baseReq := model.WithdrawRequest{
+		ReqTime: gtime.Now().Format("YmdHis"),
+		Version: "3.0",
+		ReqData: req,
+	}
+
+	// 发送请求
+	respBody, err := a.client.DoRequest(url, baseReq)
+	if err != nil {
+		return nil, err
+	}
+	return respBody, nil
+}
+
+func (a *AccountService[T]) WithdrawTest(req *model.WithdrawReqData) (*T, error) {
+	// 构建请求参数
+	url := consts.BASE_TEST_URL + consts.LKL_ACCOUNT_WITHDRAW_URL
 
 	// 构建BaseModel请求
 	baseReq := model.WithdrawRequest{
