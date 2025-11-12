@@ -1,8 +1,9 @@
 package common
 
 import (
-	"encoding/json"
 	"reflect"
+
+	"github.com/gogf/gf/v2/encoding/gjson"
 )
 
 // CleanJSON 清理JSON字符串中的空值和0值字段
@@ -10,7 +11,7 @@ func CleanJSON(jsonStr string) ([]byte, error) {
 	var data interface{}
 
 	// 解析JSON字符串
-	if err := json.Unmarshal([]byte(jsonStr), &data); err != nil {
+	if err := gjson.Unmarshal([]byte(jsonStr), &data); err != nil {
 		return nil, err
 	}
 
@@ -18,7 +19,7 @@ func CleanJSON(jsonStr string) ([]byte, error) {
 	cleaned := cleanData(data)
 
 	// 转换回JSON字符串
-	result, err := json.Marshal(cleaned)
+	result, err := gjson.Marshal(cleaned)
 	if err != nil {
 		return nil, err
 	}
