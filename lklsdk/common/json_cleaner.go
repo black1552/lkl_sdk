@@ -1,8 +1,9 @@
 package common
 
 import (
-	"github.com/gogf/gf/v2/encoding/gjson"
 	"reflect"
+
+	"github.com/gogf/gf/v2/encoding/gjson"
 )
 
 // CleanJSON 清理JSON字符串中的空值和0值字段
