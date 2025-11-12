@@ -23,7 +23,7 @@ type ApplyLedgerMerReqData struct {
 	SplitEntrustFilePath string                 `json:"splitEntrustFilePath"`  // 分账授权委托书文件路径，必传，长度64，调用附件上传接口获取
 	SplitRange           consts.SplitRange      `json:"splitRange"`            // 分账范围，必传，长度32，取值说明：ALL-全部交易分账(所有交易默认都分账)，MARK-标记交易分账(只有带标记交易才分账，其余交易正常结算)
 	SepFundSource        consts.SepFundSource   `json:"sepFundSource"`         // 分账依据，非必传，长度32，取值说明：TRA-交易分账，BAR-金额分账
-	ElecContractId       string                 `json:"elecContractId"`        // 电子合同编号，非必传，长度32，收单已签约交易电子合同编号，供审核人员复核使用
+	EleContractNo        string                 `json:"eleContractNo"`         // 电子合同编号，非必传，长度32，收单已签约交易电子合同编号，供审核人员复核使用
 	SplitLaunchMode      consts.SplitLaunchMode `json:"splitLaunchMode"`       // 分账发起方式，非必传，长度32，取值说明：AUTO-自动触发分账，POINTTRUE-指定规则分账，MANUAL-手动分账
 	SettleType           consts.SplitSettleType `json:"settleType"`            // 结算类型，非必传，长度32，取值说明：01-主扫现结，02-复扫现结，03-交易自动结算
 	SplitRuleSource      consts.SplitRuleSource `json:"splitRuleSource"`       // 分账规则来源，条件必传，长度32，取值说明：MER-商户自定规则，PLATFORM-平台分润规则(分润规则必传)
