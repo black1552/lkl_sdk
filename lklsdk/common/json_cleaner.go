@@ -8,15 +8,14 @@ import (
 
 // CleanJSON 清理JSON字符串中的空值和0值字段
 func CleanJSON(jsonStr string) ([]byte, error) {
-	var data interface{}
-
-	// 解析JSON字符串
-	if err := gjson.Unmarshal([]byte(jsonStr), &data); err != nil {
+	// 解析为JSON
+	json, err := gjson.DecodeToJson(jsonStr, gjson.Options{StrNumber: true})
+	if err != nil {
 		return nil, err
 	}
 
 	// 递归清理数据
-	cleaned := cleanData(data)
+	cleaned := cleanData(json)
 
 	// 转换回JSON字符串
 	result, err := gjson.Marshal(cleaned)
