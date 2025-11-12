@@ -1,7 +1,7 @@
 package common
 
 import (
-	"encoding/json"
+	"github.com/gogf/gf/v2/encoding/gjson"
 	"reflect"
 )
 
@@ -10,7 +10,7 @@ func CleanJSON(jsonStr string) ([]byte, error) {
 	var data interface{}
 
 	// 解析JSON字符串
-	if err := json.Unmarshal([]byte(jsonStr), &data); err != nil {
+	if err := gjson.Unmarshal([]byte(jsonStr), &data); err != nil {
 		return nil, err
 	}
 
@@ -18,7 +18,7 @@ func CleanJSON(jsonStr string) ([]byte, error) {
 	cleaned := cleanData(data)
 
 	// 转换回JSON字符串
-	result, err := json.Marshal(cleaned)
+	result, err := gjson.Marshal(cleaned)
 	if err != nil {
 		return nil, err
 	}
