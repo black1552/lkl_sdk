@@ -4,26 +4,24 @@ import (
 	"reflect"
 
 	"github.com/gogf/gf/v2/encoding/gjson"
+	"github.com/gogf/gf/v2/os/gctx"
+	"github.com/gogf/gf/v2/os/glog"
 )
 
 // CleanJSON 清理JSON字符串中的空值和0值字段
 func CleanJSON(jsonStr string) ([]byte, error) {
 	// 解析为JSON
-	json, err := gjson.DecodeToJson(jsonStr, gjson.Options{StrNumber: true})
-	if err != nil {
-		return nil, err
-	}
-
+	//var data interface{}
+	json := gjson.NewWithOptions(jsonStr, gjson.Options{StrNumber: true})
+	glog.Infof(gctx.New(), "Cleaning JSON: %+v", json)
 	// 递归清理数据
-	cleaned := cleanData(json)
-
-	// 转换回JSON字符串
-	result, err := gjson.Marshal(cleaned)
+	cleaned := cleanData(json.Interface())
+	jsons, err := gjson.DecodeToJson(cleaned, gjson.Options{StrNumber: true})
 	if err != nil {
+		glog.Errorf(gctx.New(), "Error decoding JSON: %v", err)
 		return nil, err
 	}
-
-	return result, nil
+	return jsons.ToJson()
 }
 
 // cleanData 递归清理map或slice中的空值和0值
