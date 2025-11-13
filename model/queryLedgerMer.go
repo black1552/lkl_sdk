@@ -33,9 +33,9 @@ type QueryLedgerMerReqData struct {
 // 包含响应状态码、消息和业务数据
 type QueryLedgerMerResponse struct {
 	// 响应状态码，000000表示成功
-	Code string `json:"code"`
+	RetCode string `json:"retCode"`
 	// 响应消息
-	Msg string `json:"msg"`
+	RetMsg string `json:"retMsg"`
 	// 响应业务数据，当code为000000时返回
 	RespData *QueryLedgerMerRespData `json:"respData"`
 }
@@ -86,5 +86,5 @@ type BindRelation struct {
 // 成功条件：响应码为000000
 // 返回值：true表示成功，false表示失败
 func (resp *QueryLedgerMerResponse) SuccessOrFail() bool {
-	return resp.Code == "000000"
+	return resp.RetCode == "000000"
 }
