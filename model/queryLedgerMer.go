@@ -52,7 +52,7 @@ type QueryLedgerMerRespData struct {
 	// 银联商户号
 	MerCupNo string `json:"merCupNo"`
 	// 最低分账比例（百分比，支持2位精度），取值说明：70或70.50
-	SplitLowestRatio string `json:"splitLowestRatio"`
+	SplitLowestRatio float64 `json:"splitLowestRatio"`
 	// 商户分账状态，取值说明：VALID启用，INVALID禁用
 	SplitStatus string `json:"splitStatus"`
 	// 分账范围，取值说明：ALL：全部交易分账(商户所有交易默认待分账)，MARK：标记交易分账(只有带分账标识交易待分账，其余交易正常结算)，默认：MARK
