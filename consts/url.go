@@ -23,7 +23,8 @@ const (
 	// LKL_ACCOUNT_BALANCE_QUERY_URL 拉卡拉账户余额查询
 	LKL_ACCOUNT_BALANCE_QUERY_URL = "/v2/laep/industry/ewalletBalanceQuery"
 	// LKL_ACCOUNT_WITHDRAW_URL 拉卡拉账户提现
-	LKL_ACCOUNT_WITHDRAW_URL = "/v2/laep/industry/ewalletWithdrawD1"
+	LKL_ACCOUNT_WITHDRAW_URL          = "/v2/laep/industry/ewalletWithdrawD1"
+	LKL_SPLIT_LEDGER_RESULT_QUERY_URL = "/v3/sacs/query_plus"
 )
 
 const (

@@ -137,3 +137,22 @@ func (s *SplitLedgerService[T]) OrderSplitLedgerTest(req *model.OrderSplitLedger
 	}
 	return respBody, nil
 }
+
+func (s *SplitLedgerService[T]) SplitLedgerResultQuery(req *model.SplitLedgerResultQueryReqData) (*T, error) {
+	// 构建请求参数
+	url := consts.BASE_URL + consts.LKL_SPLIT_LEDGER_RESULT_QUERY_URL
+
+	// 构建BaseModel请求
+	baseReq := model.SplitLedgerResultQueryRequest{
+		ReqTime: time.Now().Format("20060102150405"),
+		Version: "3.0",
+		ReqData: req,
+	}
+
+	// 发送请求
+	respBody, err := s.client.DoRequest(url, baseReq)
+	if err != nil {
+		return nil, err
+	}
+	return respBody, nil
+}
