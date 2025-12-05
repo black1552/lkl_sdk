@@ -153,6 +153,11 @@ func (s *SDK[T]) OrderSplitLedgerTest(req *model.OrderSplitLedgerReqData) (*T, e
 	return s.SplitLedger.OrderSplitLedgerTest(req)
 }
 
+// OrderSplitLedgerResultQuery 订单分账结果查询
+func (s *SDK[T]) OrderSplitLedgerResultQuery(req *model.OrderSplitLedgerResultQueryReqData) (*T, error) {
+	return s.SplitLedger.OrderSplitLedgerResultQuery(req)
+}
+
 // TradeQuery 交易查询
 func (s *SDK[T]) TradeQuery(req *model.TradeQueryReqData) (*T, error) {
 	return s.Trade.TradeQuery(req)
