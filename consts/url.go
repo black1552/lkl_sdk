@@ -25,6 +25,7 @@ const (
 	// LKL_ACCOUNT_WITHDRAW_URL 拉卡拉账户提现
 	LKL_ACCOUNT_WITHDRAW_URL          = "/v2/laep/industry/ewalletWithdrawD1"
 	LKL_SPLIT_LEDGER_RESULT_QUERY_URL = "/v3/sacs/query_plus"
+	LKL_SPLIT_LEDGER_FALLBACK_URL     = "/v3/sacs/fallback"
 )
 
 const (

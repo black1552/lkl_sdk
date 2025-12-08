@@ -156,3 +156,22 @@ func (s *SplitLedgerService[T]) OrderSplitLedgerResultQuery(req *model.OrderSpli
 	}
 	return respBody, nil
 }
+
+func (s *SplitLedgerService[T]) OrderSplitLedgerFallback(req *model.OrderSplitLedgerFallbackReqData) (*T, error) {
+	// 构建请求参数
+	url := consts.BASE_URL + consts.LKL_SPLIT_LEDGER_FALLBACK_URL
+
+	// 构建BaseModel请求
+	baseReq := model.OrderSplitLedgerFallbackRequest{
+		ReqTime: time.Now().Format("20060102150405"),
+		Version: "3.0",
+		ReqData: req,
+	}
+
+	// 发送请求
+	respBody, err := s.client.DoRequest(url, baseReq)
+	if err != nil {
+		return nil, err
+	}
+	return respBody, nil
+}
