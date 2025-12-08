@@ -26,7 +26,8 @@ type PreorderReqData struct {
 		RequestIp string `json:"request_ip"` // 请求方IP地址，存在必填，格式如36.45.36.95，String(64)
 		Location  string `json:"location"`   // 纬度,经度，商户终端的地理位置，银联二维码交易必填，整体格式：纬度,经度，+表示北纬、东经，-表示南纬、西经。经度格式：1位正负号+3位整数+1位小数点+5位小数；纬度格式：1位正负号+2位整数+1位小数点+6位小数；举例：+31.221345,+121.12345，String(32)
 	} `json:"location_info"` // 地址位置信息，Object
-	Subject string `json:"subject"` // 订单标题，用于简单描述订单或商品主题，传输给账户端（账户端控制，实际最多42个字节），微信支付必送，String(42)
+	Subject       string         `json:"subject"`         // 订单标题，用于简单描述订单或商品主题，传输给账户端（账户端控制，实际最多42个字节），微信支付必送，String(42)
+	AccBusiFields *AccBusiFields `json:"acc_busi_fields"` // 账户业务字段，Object
 }
 
 func NewPreorder(param *PreorderReqData) *Preorder {
