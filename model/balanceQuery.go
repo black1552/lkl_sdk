@@ -35,30 +35,30 @@ type BalanceQueryReqData struct {
 // 包含响应状态码、消息和业务数据
 type BalanceQueryResponse struct {
 	// 响应状态码，000000
-	Code string `json:"code"`
+	Code string `json:"retCode"`
 	// 响应消息
-	Msg string `json:"msg"`
+	Msg string `json:"retMsg"`
 	// 响应业务数据，当code为SACS0000时返回
-	RespData *BalanceQueryRespData `json:"resp_data"`
+	RespData *BalanceQueryRespData `json:"respData"`
 }
 
 // BalanceQueryRespData 余额查询响应业务数据结构体
 // 包含余额查询返回的具体账户信息
 type BalanceQueryRespData struct {
 	// 账号，必传
-	PayNo string `json:"pay_no"`
+	PayNo string `json:"payNo"`
 	// 账户类型，必传
-	PayType string `json:"pay_type"`
+	PayType string `json:"payType"`
 	// 账户状态，必传，取值说明：CLOSE销户，NORMAL正常，FREEZE冻结，STOPAY止付
-	AcctSt string `json:"acct_st"`
+	AcctSt string `json:"acctSt"`
 	// 预付余额（单位元），必传
-	ForceBalance string `json:"force_balance"`
+	ForceBalance string `json:"forceBalance"`
 	// 上日余额（单位元）-该字段已废弃使用，必传
-	HisBalance string `json:"his_balance"`
+	HisBalance string `json:"hisBalance"`
 	// 实时余额（单位元），必传
-	ReBalance string `json:"re_balance"`
+	ReBalance string `json:"reBalance"`
 	// 当前可用余额（单位元），必传
-	CuBalance string `json:"cu_balance"`
+	CuBalance string `json:"cuBalance"`
 }
 
 // SuccessOrFail 判断余额查询请求是否成功
