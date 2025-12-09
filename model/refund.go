@@ -70,5 +70,5 @@ type RefundRespData struct {
 
 // SuccessOrFail 判断退款交易是否成功
 func (r *RefundResponse) SuccessOrFail() bool {
-	return r.Code == "000000"
+	return r.Code == "BBS00000"
 }
