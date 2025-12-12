@@ -247,3 +247,7 @@ func (s *SDK[T]) ECQmaStatus(req *ecQmaStatus.ECQmaStatusRequestData) (*ecQmaSta
 func (s *SDK[T]) ECQmaStatusTest(req *ecQmaStatus.ECQmaStatusRequestData) (*ecQmaStatus.ECQmaStatusResponse, error) {
 	return s.ECPeQmaStatus.ECQmaStatusTest(req)
 }
+
+func (s *SDK[T]) WechatRealNameQuery(req *model.WechatRealNameQueryReqData) (*T, error) {
+	return s.Merchant.WechatRealNameQuery(req)
+}

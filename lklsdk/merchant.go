@@ -205,3 +205,26 @@ func (t *MerService[T]) ReconsiderSubmitTest(req *model.ReConfSubmitRequestData)
 	}
 	return respBody, nil
 }
+
+func (t *MerService[T]) WechatRealNameQuery(req *model.WechatRealNameQueryReqData) (*T, error) {
+	// 构建请求参数
+	url := consts.BASE_URL + consts.LKL_WECHAT_REAL_NAME_QUERY
+	md5, err := gmd5.Encrypt(gconv.String(time.Now().Unix()))
+	if err != nil {
+		return nil, fmt.Errorf("创建ReqId失败")
+	}
+	// 构建BaseModel请求
+	baseReq := model.WechatRealNameQueryRequest{
+		ReqData:   req,
+		ReqId:     md5,
+		Timestamp: time.Now().Unix(),
+		Ver:       "1.0",
+	}
+
+	// 发送请求
+	respBody, err := t.client.DoRequest(url, baseReq)
+	if err != nil {
+		return nil, err
+	}
+	return respBody, nil
+}

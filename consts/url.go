@@ -58,6 +58,8 @@ const (
 	LKL_EC_APPLY_MANUAL = "/v3/mms/open_api/ec/apply_manual"
 	// LKL_EC_QMA_STATUS 拉卡拉商户电子合同人工复核结果查询
 	LKL_EC_QMA_STATUS = "/v3/mms/open_api/ec/qma_status"
+	// LKL_WECHAT_REAL_NAME_QUERY 拉卡拉微信实名认证结果查询
+	LKL_WECHAT_REAL_NAME_QUERY = "/v2/mms/openApi/wechatRealNameQuery"
 )
 
 // unifiedReturn  统一退货API地址
