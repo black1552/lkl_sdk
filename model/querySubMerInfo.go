@@ -20,9 +20,9 @@ type QuerySubMerInfoReqData struct {
 }
 
 type QuerySubMerInfoResponse struct {
-	RetCode  string                `json:"retCode"`
-	RetMsg   string                `json:"retMsg"`
-	RespData *QueryMerResponseData `json:"respData"`
+	RetCode  string                   `json:"retCode"`
+	RetMsg   string                   `json:"retMsg"`
+	RespData *QuerySubMerInfoRespData `json:"respData"`
 }
 
 type QuerySubMerInfoRespData struct {
