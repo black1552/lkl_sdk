@@ -206,15 +206,37 @@ func (t *MerService[T]) ReconsiderSubmitTest(req *model.ReConfSubmitRequestData)
 	return respBody, nil
 }
 
-func (t *MerService[T]) WechatRealNameQuery(req *model.WechatRealNameQueryReqData) (*T, error) {
+func (t *MerService[T]) QuerySubMerInfo(req *model.QuerySubMerInfoReqData) (*T, error) {
 	// 构建请求参数
-	url := consts.BASE_URL + consts.LKL_WECHAT_REAL_NAME_QUERY
+	url := consts.BASE_TEST_URL + consts.LKL_QUERY_SUB_MER_INFO_URL
 	md5, err := gmd5.Encrypt(gconv.String(time.Now().Unix()))
 	if err != nil {
 		return nil, fmt.Errorf("创建ReqId失败")
 	}
 	// 构建BaseModel请求
-	baseReq := model.WechatRealNameQueryRequest{
+	baseReq := model.QuerySubMerInfoRequest{
+		ReqData:   req,
+		ReqId:     md5,
+		Timestamp: time.Now().Unix(),
+		Ver:       "1.0",
+	}
+
+	// 发送请求
+	respBody, err := t.client.DoRequest(url, baseReq)
+	if err != nil {
+		return nil, err
+	}
+	return respBody, nil
+}
+func (t *MerService[T]) MrchAuthStateQuery(req *model.MrchAuthStateQueryReqData) (*T, error) {
+	// 构建请求参数
+	url := consts.BASE_TEST_URL + consts.LKL_MRCH_AUTH_STATE_QUERY_URL
+	md5, err := gmd5.Encrypt(gconv.String(time.Now().Unix()))
+	if err != nil {
+		return nil, fmt.Errorf("创建ReqId失败")
+	}
+	// 构建BaseModel请求
+	baseReq := model.MrchAuthStateQueryRequest{
 		ReqData:   req,
 		ReqId:     md5,
 		Timestamp: time.Now().Unix(),

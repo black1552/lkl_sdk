@@ -153,11 +153,6 @@ func (s *SDK[T]) OrderSplitLedgerTest(req *model.OrderSplitLedgerReqData) (*T, e
 	return s.SplitLedger.OrderSplitLedgerTest(req)
 }
 
-// OrderSplitLedgerResultQuery 订单分账结果查询
-func (s *SDK[T]) OrderSplitLedgerResultQuery(req *model.OrderSplitLedgerResultQueryReqData) (*T, error) {
-	return s.SplitLedger.OrderSplitLedgerResultQuery(req)
-}
-
 // OrderSplitLedgerFallback 订单分账回退
 func (s *SDK[T]) OrderSplitLedgerFallback(req *model.OrderSplitLedgerFallbackReqData) (*T, error) {
 	return s.SplitLedger.OrderSplitLedgerFallback(req)
@@ -248,6 +243,10 @@ func (s *SDK[T]) ECQmaStatusTest(req *ecQmaStatus.ECQmaStatusRequestData) (*ecQm
 	return s.ECPeQmaStatus.ECQmaStatusTest(req)
 }
 
-func (s *SDK[T]) WechatRealNameQuery(req *model.WechatRealNameQueryReqData) (*T, error) {
-	return s.Merchant.WechatRealNameQuery(req)
+func (s *SDK[T]) QuerySubMerInfo(req *model.QuerySubMerInfoReqData) (*T, error) {
+	return s.Merchant.QuerySubMerInfo(req)
+}
+
+func (s *SDK[T]) MrchAuthStateQuery(req *model.MrchAuthStateQueryReqData) (*T, error) {
+	return s.Merchant.MrchAuthStateQuery(req)
 }
