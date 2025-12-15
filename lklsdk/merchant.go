@@ -208,7 +208,7 @@ func (t *MerService[T]) ReconsiderSubmitTest(req *model.ReConfSubmitRequestData)
 
 func (t *MerService[T]) QuerySubMerInfo(req *model.QuerySubMerInfoReqData) (*T, error) {
 	// 构建请求参数
-	url := consts.BASE_TEST_URL + consts.LKL_QUERY_SUB_MER_INFO_URL
+	url := consts.BASE_URL + consts.LKL_QUERY_SUB_MER_INFO_URL
 	md5, err := gmd5.Encrypt(gconv.String(time.Now().Unix()))
 	if err != nil {
 		return nil, fmt.Errorf("创建ReqId失败")
@@ -230,7 +230,7 @@ func (t *MerService[T]) QuerySubMerInfo(req *model.QuerySubMerInfoReqData) (*T, 
 }
 func (t *MerService[T]) MrchAuthStateQuery(req *model.MrchAuthStateQueryReqData) (*T, error) {
 	// 构建请求参数
-	url := consts.BASE_TEST_URL + consts.LKL_MRCH_AUTH_STATE_QUERY_URL
+	url := consts.BASE_URL + consts.LKL_MRCH_AUTH_STATE_QUERY_URL
 	md5, err := gmd5.Encrypt(gconv.String(time.Now().Unix()))
 	if err != nil {
 		return nil, fmt.Errorf("创建ReqId失败")
